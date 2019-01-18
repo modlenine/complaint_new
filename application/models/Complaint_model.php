@@ -581,7 +581,13 @@ public function get_dept_name($sql){
     
     
 /* Insert conclusion complaint */
-    
+    public function save_conclusion(){
+        $cp_conclu_detail = $this->input->post("cp_conclu_detail");
+        $cp_conclu_signature = $this->input->post("cp_conclu_signature");
+        $cp_conclu_dept = $this->input->post("cp_conclu_dept");
+
+        $this->db->query("UPDATE complaint_main SET cp_conclu_detail='$cp_conclu_detail' , cp_conclu_signature='$cp_conclu_signature' ,  ");
+    }
 /* Insert conclusion complaint */
     
     
