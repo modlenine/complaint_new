@@ -426,21 +426,16 @@ and open the template in the editor.
 
 
 <!-- ************ Conclusion of complaint **************** Conclusion of complaint ************** Conclusion of complaint ******* -->
-                            <form name="invesform" method="post" action="<?php echo base_url(); ?>complaint/add_detail_inves/<?php echo $rs['cp_no']; ?>">
+                            <form name="invesform" method="post" action="<?php echo base_url(); ?>complaint/add_conclusion/<?php echo $rs['cp_no']; ?>">
                             <div class="card border-light mb-3 Investigation">
                                 <div class="card-header"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Conclusion of Complaint</b></h4><br>
                                     <label><b>The relevant departments. QMR</b></label><br>
                                 </div>
                                 <div class="card-body">
-                                    
-                                    
                                     <div class="form-row">
                                         <div class="col-md-8">
                                         <label><b>Conclusion of Complaint</b></label>
-                                        <?php 
-                                            
-                                        ?>
-                                        <textarea name="cp_detail_inves_detail" id="cp_detail_inves_detail" class="form-control" rows="3"></textarea>
+                                        <textarea name="cp_conclu_detail" id="cp_conclu_detail" class="form-control" rows="3"></textarea>
                                         </div>
                                     </div><br>
                                     <div class="form-row">
@@ -450,12 +445,12 @@ and open the template in the editor.
                                                 if($rs['cp_status']=="Complaint Closed"){
                                             ?>
                                             <label><b>Signature :</b></label>
-                                            <label><?php echo $rs['cp_detail_inves_signature']; ?></label>
-                                            <input hidden="" type="text" name="cp_detail_inves_signature" id="cp_detail_inves_signature" value="<?php echo $rs['cp_detail_inves_signature']; ?>" />
+                                            <label><?php echo $rs['cp_conclu_signature']; ?></label>
+                                            <input hidden="" type="text" name="cp_conclu_signature" id="cp_conclu_signature" value="<?php echo $rs['cp_conclu_signature']; ?>" />
                                             <?php }else{ ?>
                                             <label><b>Signature :</b></label>
                                             <label><?php echo $getuser['Fname']; ?></label>
-                                            <input hidden="" type="text" name="cp_detail_inves_signature" id="cp_detail_inves_signature" value="<?php echo $getuser['Fname']; ?>" />
+                                            <input hidden="" type="text" name="cp_conclu_signature" id="cp_conclu_signature" value="<?php echo $getuser['Fname']; ?>" />
                                             <?php } ?>
                                         </div>
                                         
@@ -464,12 +459,12 @@ and open the template in the editor.
                                                 if($rs['cp_status']=="Complaint Closed"){
                                             ?>
                                             <label><b>Department :</b></label>
-                                            <label><?php echo $rs['cp_detail_inves_dept']; ?></label>
-                                            <input hidden="" type="text" name="cp_detail_inves_dept" id="cp_detail_inves_dept" value="<?php echo $rs['cp_detail_inves_dept']; ?>" />
+                                            <label><?php echo $rs['cp_conclu_dept']; ?></label>
+                                            <input hidden="" type="text" name="cp_conclu_dept" id="cp_conclu_dept" value="<?php echo $rs['cp_conclu_dept']; ?>" />
                                             <?php }else{ ?>
                                             <label><b>Department :</b></label>
                                             <label><?php echo $getuser['Dept']; ?></label>
-                                            <input hidden="" type="text" name="cp_detail_inves_dept" id="cp_detail_inves_dept" value="<?php echo $getuser['Dept']; ?>" />
+                                            <input hidden="" type="text" name="cp_conclu_dept" id="cp_conclu_dept" value="<?php echo $getuser['Dept']; ?>" />
                                             <?php } ?>
                                         </div>
                                         
@@ -478,12 +473,12 @@ and open the template in the editor.
                                                 if($rs['cp_status']=="Complaint Closed"){
                                             ?>
                                             <label><b>Date :</b></label>
-                                            <label><?php echo $rs['cp_detail_inves_date']; ?></label>
-                                            <input hidden="" type="text" name="cp_detail_inves_date" id="cp_detail_inves_date" value="<?php echo $rs['cp_detail_inves_date']; ?>" />
+                                            <label><?php echo $rs['cp_conclu_date']; ?></label>
+                                            <input hidden="" type="text" name="cp_conclu_date" id="cp_conclu_date" value="<?php echo $rs['cp_conclu_date']; ?>" />
                                             <?php }else{ ?>
                                             <label><b>Date :</b></label>
                                             <label><?php echo date('d/m/Y'); ?></label>
-                                            <input hidden="" type="text" name="cp_detail_inves_date" id="cp_detail_inves_date" value="<?php echo date('d/m/Y'); ?>" />
+                                            <input hidden="" type="text" name="cp_conclu_date" id="cp_conclu_date" value="<?php echo date('d/m/Y'); ?>" />
                                             <?php } ?>
                                         </div>
                                     </div><hr>

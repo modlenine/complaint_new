@@ -580,9 +580,9 @@ public function get_dept_name($sql){
     /** Insert Summary of investigate **/
     
     
-    public function test(){
-        echo "test";
-    }
+/* Insert conclusion complaint */
+    
+/* Insert conclusion complaint */
     
     
     

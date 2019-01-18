@@ -93,6 +93,10 @@
         public function add_sum_of_inves($cp_no){
             $this->complaint_model->saveSuminves($cp_no);
         }
+
+        public function add_conclusion(){
+            
+        }
         
 
         
