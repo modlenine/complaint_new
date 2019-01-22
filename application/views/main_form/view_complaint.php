@@ -62,15 +62,15 @@ and open the template in the editor.
                                     <div class="form-row">
                                         <div class="col-md-3">
                                             <label><b>Complaint Person :</b></label>
-                                            <label><?php echo $getuser['username']; ?></label>
+                                            <label><?php echo $rs['cp_user_name']; ?></label>
                                         </div>
                                         <div class="col-md-3">
                                             <label><b>Employee ID :</b></label>
-                                            <label><?php echo $getuser['ecode']; ?></label>
+                                            <label><?php echo $rs['cp_user_empid']; ?></label>
                                         </div>
                                         <div class="col-md-3">
                                             <label><b>Department :</b></label>
-                                            <label><?php echo $getuser['Dept']; ?></label>
+                                            <label><?php echo $rs['cp_user_dept']; ?></label>
                                         </div>
                                         <div class="col-md-3">
                                             <label><b>Status :</b></label>
@@ -216,7 +216,7 @@ and open the template in the editor.
                             foreach ($check_dept as $cc):
                                 $cc['cp_dept_code'];
                             
-                            if($getuser['DeptCode'] == $cc['cp_dept_code']){ ?>
+                            if($getuser['DeptCode'] == $cc['cp_dept_code'] && $getuser['username'] != $rs['cp_user_name'] ) { ?>
                             <div><a href="<?php echo base_url(); ?>complaint/inves_starting/<?php echo $rs['cp_no']; ?>"><button onclick="javascript:return confirm('คุณต้องการเริ่มการสืบสวนใช่หรือไม่');" class="btn btn-primary">Start Investigate</button></a></div>
                             
                             <?php

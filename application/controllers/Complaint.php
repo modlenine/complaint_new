@@ -61,9 +61,12 @@
         
         public function inves_starting($cp_no){
             $this->complaint_model->changeStatus($cp_no);
+            $this->complaint_model->emailChangeStatus($cp_no);
+            redirect('/complaint/investigation/'.$cp_no);
         }
         
         public function investigation($cp_no){
+        $this->login_model->callLogin();
         
         $data['topic'] = $this->complaint_model->gettopic();
         $data['rs'] = $this->complaint_model->edit_complaint($cp_no);

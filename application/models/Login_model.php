@@ -47,6 +47,14 @@ class Login_model extends CI_Model{
          
     }
     
+    public function callLogin(){
+        if (isset($_SESSION['username']) == "") {
+            echo "<h1 style='text-align:center;margin-top:50px;'>กรุณา Login เข้าสู่ระบบ</h1>";
+    header("refresh:2; url=http://localhost/complaint_new/");
+    die();
+}
+    }
+    
     
     public function getuser(){
         $result = $this->queryData("select * from member where username = '".$_SESSION['username']."' ");

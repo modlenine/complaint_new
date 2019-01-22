@@ -470,7 +470,7 @@ and open the template in the editor.
                                             <i class="fas fa-laptop fa-2x"></i>
                                         </div>
                                         <div class="col-md-2 new_center_text">
-                                            <input checked="" type="checkbox" name="qmr" id="qmr" value="1002"/>
+                                            <input checked="" type="checkbox" name="qmr" id="qmr" value="1099"/>
                                             <label for="it"><b>QMR</b></label>
                                             <br>
                                             <i class="fas fa-laptop fa-2x"></i>

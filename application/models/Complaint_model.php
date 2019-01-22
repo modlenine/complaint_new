@@ -531,7 +531,40 @@ public function get_dept_name($sql){
 /******Change status of investigate old = new complaint , change to investigation *******/
     public function changeStatus($cp_no){
          $this->db->query("UPDATE complaint_main SET cp_status='Investigating' ");
-         redirect('/complaint/investigation/'.$cp_no);
+         
+    }
+    
+    public function emailChangeStatus($cp_no){
+        
+        $deptEmail = $this->db->query("SELECT * FROM complaint_department WHERE cp_dept_cp_no='$cp_no' ");
+        foreach ($deptEmail->result_array() as $deptEm){
+            $resultDeptEm = $deptEm['cp_dept_code']; 
+            
+            $getEmail = $this->db->query("select * from maillist where deptcode='$resultDeptEm' ");
+            
+            foreach ($getEmail->result_array() as $gemail){
+               $email = $gemail['email'];
+                
+                $subject = "Starting Investigation";
+            $body = "<h2>Complaint started the investigation</h2>";
+            $body .= "<strong>Complaint No. : </strong>" . $cp_no . "<br>";
+      
+            
+            $get_filename = $this->queryData("select * from complaint_file_upload where file_cp_no ='$cp_no' ");
+            foreach ($get_filename->result_array() as $gf){
+                $gff = $gf['file_name'];
+                
+            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://localhost/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
+            }
+            
+            $body .= "<strong>Link Program : </strong>" . "<a href=http://localhost/complaint_new/complaint/investigation/".$cp_no.">" . "Admin Page</a>";
+            $this->smtpmail($email, $subject, $body);
+            
+            }
+        }
+        
+        
+
     }
 /******Change status of investigate old = new complaint , change to investigation *******/
     
@@ -550,6 +583,11 @@ public function get_dept_name($sql){
         redirect('/complaint/investigation/'.$cp_no);
         
     }
+    /***********Send Email for update status*******************/
+        
+    /***********Send Email for update status*******************/
+    
+    
     /** Insert Detail of investigate **/
     
     

@@ -60,7 +60,7 @@ and open the template in the editor.
                                     <div class="form-row">
                                         <div class="col-md-3">
                                             <label><b>Complaint Person :</b></label>
-                                            <label><?php echo $getuser['username']; ?></label>
+                                            <label><?php echo $rs['cp_user_name']; ?></label>
                                         </div>
                                         <div class="col-md-3">
                                             <label><b>Employee ID :</b></label>
@@ -304,7 +304,7 @@ and open the template in the editor.
                                     </div><hr>
                                     
                                     <!-- Check permission for show or hide start investigate button -->
-                                    <?php if($rs['cp_status']=="Investigating"){ ?>
+                                    <?php if($rs['cp_status']=="Investigating" && $getuser['username'] != $rs['cp_user_name'] ){ ?>
                                     <div class="col-md-4"><input type="submit" name="save" id="save" value="Submit" class="btn btn-primary btn-block"/></div>
                                     <?php }else{} ?>
                                 </div>
