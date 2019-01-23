@@ -121,7 +121,7 @@ public function get_dept_name($sql){
         $mail = new PHPMailer();
         $mail->IsSMTP();
         $mail->CharSet = "utf-8";  // ในส่วนนี้ ถ้าระบบเราใช้ tis-620 หรือ windows-874 สามารถแก้ไขเปลี่ยนได้ 
-        $mail->SMTPDebug = 0;                                      // set mailer to use SMTP
+        $mail->SMTPDebug = 1;                                      // set mailer to use SMTP
         $mail->Host = "mail.saleecolour.com";  // specify main and backup server
         $mail->Port = 587; // พอร์ท
         $mail->SMTPAuth = true;     // turn on SMTP authentication
@@ -485,7 +485,7 @@ public function get_dept_name($sql){
             echo "บันทึกข้อมูลไม่สำเร็จ";
         } else {
             echo "บันทึกข้อมูลสำเร็จ";
-            header("refresh:1; url=http://localhost/complaint_new/complaint/");
+            // header("refresh:1; url=http://localhost/complaint_new/complaint/");
         }
 //redirect("computer","refresh");
 
@@ -558,7 +558,13 @@ public function get_dept_name($sql){
             }
             
             $body .= "<strong>Link Program : </strong>" . "<a href=http://localhost/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
-            $this->smtpmail($email, $subject, $body);
+            $sendEmail = $this->smtpmail($email, $subject, $body);
+
+            if(!$sendEmail){
+                echo "ส่ง Email ไม่ผ่าน";
+            }else{
+                echo "ส่ง Email สำเร็จ";
+            }
             
             }
         }
@@ -606,7 +612,13 @@ public function get_dept_name($sql){
             }
             
             $body .= "<strong>Link Program : </strong>" . "<a href=http://localhost/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
-            $this->smtpmail($email, $subject, $body);
+            $sendEmail = $this->smtpmail($email, $subject, $body);
+
+            if(!$sendEmail){
+                echo "ส่ง Email ไม่ผ่าน";
+            }else{
+                echo "ส่ง Email สำเร็จ";
+            }
             
             }
         }
@@ -668,7 +680,13 @@ public function get_dept_name($sql){
             }
             
             $body .= "<strong>Link Program : </strong>" . "<a href=http://localhost/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
-            $this->smtpmail($email, $subject, $body);
+            $sendEmail = $this->smtpmail($email, $subject, $body);
+
+            if(!$sendEmail){
+                echo "ส่ง Email ไม่ผ่าน";
+            }else{
+                echo "ส่ง Email สำเร็จ";
+            }
             
             }
         }
@@ -714,7 +732,13 @@ public function get_dept_name($sql){
             }
             
             $body .= "<strong>Link Program : </strong>" . "<a href=http://localhost/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
-            $this->smtpmail($email, $subject, $body);
+            $sendEmail = $this->smtpmail($email, $subject, $body);
+
+            if(!$sendEmail){
+                echo "ส่ง Email ไม่ผ่าน";
+            }else{
+                echo "ส่ง Email สำเร็จ";
+            }
             
             }
         }
