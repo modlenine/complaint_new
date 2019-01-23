@@ -685,8 +685,42 @@ public function get_dept_name($sql){
         $cp_conclu_signature = $this->input->post("cp_conclu_signature");
         $cp_conclu_dept = $this->input->post("cp_conclu_dept");
 
-        $this->db->query("UPDATE complaint_main SET cp_conclu_detail='$cp_conclu_detail' , cp_conclu_signature='$cp_conclu_signature' ,  ");
+        $this->db->query("UPDATE complaint_main SET cp_conclu_detail='$cp_conclu_detail' , cp_conclu_signature='$cp_conclu_signature' , cp_conclu_dept='$cp_conclu_dept' , cp_conclu_date=CURDATE() ");
+        
+        $this->db->query("UPDATE complaint_main SET cp_status='Close Complaint' ");
     }
+    
+/******************Change Email Status********************/
+    public function emailChangeStat4($cp_no){
+        $deptEmail = $this->db->query("SELECT * FROM complaint_department WHERE cp_dept_cp_no='$cp_no' ");
+        foreach ($deptEmail->result_array() as $deptEm){
+            $resultDeptEm = $deptEm['cp_dept_code']; 
+            
+            $getEmail = $this->db->query("select * from maillist where deptcode='$resultDeptEm' ");
+            
+            foreach ($getEmail->result_array() as $gemail){
+               $email = $gemail['email'];
+                
+                $subject = "Close Complaint";
+            $body = "<h2>Close Complaint</h2>";
+            $body .= "<strong>Complaint No. : </strong>" . $cp_no . "<br>";
+      
+            
+            $get_filename = $this->queryData("select * from complaint_file_upload where file_cp_no ='$cp_no' ");
+            foreach ($get_filename->result_array() as $gf){
+                $gff = $gf['file_name'];
+                
+            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://localhost/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
+            }
+            
+            $body .= "<strong>Link Program : </strong>" . "<a href=http://localhost/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
+            $this->smtpmail($email, $subject, $body);
+            
+            }
+        }
+    }
+/******************Change Email Status********************/
+    
 /* Insert conclusion complaint */
     
     

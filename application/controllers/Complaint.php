@@ -101,8 +101,10 @@
             redirect('/complaint/investigation/'.$cp_no);
         }
 
-        public function add_conclusion(){
-            
+        public function add_conclusion($cp_no){
+            $this->complaint_model->save_conclusion($cp_no);
+            $this->complaint_model->emailChangeStat4($cp_no);
+            redirect('/complaint/investigation/'.$cp_no);
         }
         
 

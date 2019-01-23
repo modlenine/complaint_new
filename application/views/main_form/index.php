@@ -63,7 +63,7 @@ and open the template in the editor.
                 <?php foreach ($getdataall->result() as $gda): ?>
                     <tr align="center">
                         <td ><strong><a href="<?php 
-                        if($gda->cp_status == "Investigating" || $gda->cp_status == "Investigated" || $gda->cp_status == "Normal complaint"){
+                        if($gda->cp_status == "Investigating" || $gda->cp_status == "Investigated" || $gda->cp_status == "Normal Complaint" || $gda->cp_status == "Close Complaint"){
                             echo base_url(); ?>complaint/investigation/<?php echo $gda->cp_no;
                         }else{
                             echo base_url(); ?>complaint/viewcomplaint/<?php echo $gda->cp_no;

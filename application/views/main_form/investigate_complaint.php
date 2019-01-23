@@ -262,7 +262,7 @@ and open the template in the editor.
                                         
                                         <div class="col-md-2">
                                             <?php  
-                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal complaint"){
+                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint"){
                                             ?>
                                             <label><b>Signature :</b></label>
                                             <label><?php echo $rs['cp_detail_inves_signature']; ?></label>
@@ -433,16 +433,26 @@ and open the template in the editor.
                                 </div>
                                 <div class="card-body">
                                     <div class="form-row">
+                                        <?php 
+                                            if($rs['cp_status']== "Close Complaint"){
+                                        ?>
+                                        <div class="col-md-8">
+                                        <label><b>Conclusion of Complaint</b></label>
+                                        <textarea readonly="" name="cp_conclu_detail" id="cp_conclu_detail" class="form-control" rows="3"><?php echo $rs['cp_conclu_detail'] ?></textarea>
+                                        </div>
+                                            <?php  }else{ ?>
                                         <div class="col-md-8">
                                         <label><b>Conclusion of Complaint</b></label>
                                         <textarea name="cp_conclu_detail" id="cp_conclu_detail" class="form-control" rows="3"></textarea>
                                         </div>
+                                            <?php  } ?>
+                                        
                                     </div><br>
                                     <div class="form-row">
                                         
                                         <div class="col-md-2">
                                             <?php  
-                                                if($rs['cp_status']=="Complaint Closed"){
+                                                if($rs['cp_status']=="Close Complaint"){
                                             ?>
                                             <label><b>Signature :</b></label>
                                             <label><?php echo $rs['cp_conclu_signature']; ?></label>
@@ -456,7 +466,7 @@ and open the template in the editor.
                                         
                                         <div class="col-md-2">
                                             <?php  
-                                                if($rs['cp_status']=="Complaint Closed"){
+                                                if($rs['cp_status']=="Close Complaint"){
                                             ?>
                                             <label><b>Department :</b></label>
                                             <label><?php echo $rs['cp_conclu_dept']; ?></label>
@@ -470,7 +480,7 @@ and open the template in the editor.
                                         
                                         <div class="col-md-2">
                                             <?php  
-                                                if($rs['cp_status']=="Complaint Closed"){
+                                                if($rs['cp_status']=="Close Complaint"){
                                             ?>
                                             <label><b>Date :</b></label>
                                             <label><?php echo $rs['cp_conclu_date']; ?></label>
