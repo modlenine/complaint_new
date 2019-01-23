@@ -188,7 +188,7 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                     <?php 
-                                            if($rs['cp_status']=="Investigating" || $rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal complaint"){
+                                            if($rs['cp_status']=="Investigating" || $rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint"){
                                                 $detail_of_cp = ' readonly="" ';
                                             }else{
                                                 $detail_of_cp = "";
@@ -249,7 +249,7 @@ and open the template in the editor.
                                         <div class="col-md-8">
                                         <label><b>Detail of investigate</b></label>
                                         <?php 
-                                            if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal complaint"){
+                                            if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint"){
                                                 $hh = ' readonly="" ';
                                             }else{
                                                 $hh = "";
@@ -276,7 +276,7 @@ and open the template in the editor.
                                         
                                         <div class="col-md-2">
                                             <?php  
-                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal complaint"){
+                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint"){
                                             ?>
                                             <label><b>Department :</b></label>
                                             <label><?php echo $rs['cp_detail_inves_dept']; ?></label>
@@ -290,7 +290,7 @@ and open the template in the editor.
                                         
                                         <div class="col-md-2">
                                             <?php  
-                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal complaint"){
+                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint"){
                                             ?>
                                             <label><b>Date :</b></label>
                                             <label><?php echo $rs['cp_detail_inves_date']; ?></label>

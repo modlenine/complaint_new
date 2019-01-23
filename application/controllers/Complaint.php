@@ -90,11 +90,15 @@
         
         public function add_detail_inves($cp_no){
             $this->complaint_model->saveDetailInves($cp_no);
+            $this->complaint_model->emailChangeStat2($cp_no);
+            redirect('/complaint/investigation/'.$cp_no);
             
         }
         
         public function add_sum_of_inves($cp_no){
             $this->complaint_model->saveSuminves($cp_no);
+            $this->complaint_model->emailChangeStat3($cp_no);
+            redirect('/complaint/investigation/'.$cp_no);
         }
 
         public function add_conclusion(){
