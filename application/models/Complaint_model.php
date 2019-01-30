@@ -126,7 +126,7 @@ public function get_dept_name($sql){
         $mail->Port = 587; // พอร์ท
         $mail->SMTPAuth = true;     // turn on SMTP authentication
         $mail->Username = "websystem@saleecolour.com";  // SMTP username
-        $mail->Password = "Ae8686"; // SMTP password
+        $mail->Password = "Ae8686#2"; // SMTP password
 
         $mail->From = "websystem@saleecolour.com";
         $mail->FromName = "Salee Colour WEB System";
@@ -230,9 +230,9 @@ public function get_dept_name($sql){
                 $gff = $gf['file_name'];
             
             
-            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://localhost/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
+            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://192.190.10.27/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
             }
-            $body .= "<strong>Link Program : </strong>" . "<a href=#>" . "Admin Page</a>";
+            $body .= "<strong>Link Program : </strong>" . "<a href=http://192.190.10.27/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
             $this->smtpmail($email, $subject, $body);
         }
             
@@ -278,10 +278,10 @@ public function get_dept_name($sql){
             foreach ($get_filename->result_array() as $gf){
                 $gff = $gf['file_name'];
                 
-            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://localhost/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
+            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://192.190.10.27/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
             }
             
-            $body .= "<strong>Link Program : </strong>" . "<a href=#>" . "Admin Page</a>";
+            $body .= "<strong>Link Program : </strong>" . "<a href=http://192.190.10.27/complaint_new/complaint/investigation/".$cp_no.">" . "Go to page</a>";
             $this->smtpmail($email, $subject, $body);
         }
             
@@ -382,50 +382,62 @@ public function get_dept_name($sql){
         $dept_code1 = array(
             "cp_dept_cp_no" => $cp_no,
             "cp_dept_code" => $lab_code,
+            "cp_dept_sum_status" => 0
         );
         $dept_code2 = array(
             "cp_dept_cp_no" => $cp_no,
             "cp_dept_code" => $admin_code,
+            "cp_dept_sum_status" => 0
         );
         $dept_code3 = array(
             "cp_dept_cp_no" => $cp_no,
             "cp_dept_code" => $hr_code,
+            "cp_dept_sum_status" => 0
         );
         $dept_code4 = array(
             "cp_dept_cp_no" => $cp_no,
             "cp_dept_code" => $account_code,
+            "cp_dept_sum_status" => 0
         );
         $dept_code5 = array(
             "cp_dept_cp_no" => $cp_no,
             "cp_dept_code" => $qc_code,
+            "cp_dept_sum_status" => 0
         );
         $dept_code6 = array(
             "cp_dept_cp_no" => $cp_no,
             "cp_dept_code" => $maintenance_code,
+            "cp_dept_sum_status" => 0
         );
         $dept_code7 = array(
             "cp_dept_cp_no" => $cp_no,
             "cp_dept_code" => $pd_code,
+            "cp_dept_sum_status" => 0
         );
         $dept_code8 = array(
             "cp_dept_cp_no" => $cp_no,
             "cp_dept_code" => $sales_code,
+            "cp_dept_sum_status" => 0
         );
         $dept_code9 = array(
             "cp_dept_cp_no" => $cp_no,
             "cp_dept_code" => $warehouse_code,
+            "cp_dept_sum_status" => 0
         );
         $dept_code10 = array(
             "cp_dept_cp_no" => $cp_no,
             "cp_dept_code" => $planning_code,
+            "cp_dept_sum_status" => 0
         );
         $dept_code11 = array(
             "cp_dept_cp_no" => $cp_no,
             "cp_dept_code" => $it_code,
+            "cp_dept_sum_status" => 0
         );
         $dept_code12 = array(
             "cp_dept_cp_no" => $cp_no,
             "cp_dept_code" => $qmr_code,
+            "cp_dept_sum_status" => 0
         );
         
         if($lab_code != ""){
@@ -470,10 +482,10 @@ public function get_dept_name($sql){
         
         
         /* Insert File Upload to file upload table */
-       $up_file = array(
-           "file_cp_no" => $cp_no,
-           "file_name" => $this->input->post("file[]")
-       );
+//       $up_file = array(
+//           "file_cp_no" => $cp_no,
+//           "file_name" => $this->input->post("file[]")
+//       );
         /* Insert File Upload to file upload table */
         
        
@@ -485,7 +497,7 @@ public function get_dept_name($sql){
             echo "บันทึกข้อมูลไม่สำเร็จ";
         } else {
             echo "บันทึกข้อมูลสำเร็จ";
-            // header("refresh:1; url=http://localhost/complaint_new/complaint/");
+            header("refresh:1; url=http://192.190.10.27/complaint_new/complaint/");
         }
 //redirect("computer","refresh");
 
@@ -554,10 +566,10 @@ public function get_dept_name($sql){
             foreach ($get_filename->result_array() as $gf){
                 $gff = $gf['file_name'];
                 
-            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://localhost/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
+            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://192.190.10.27/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
             }
             
-            $body .= "<strong>Link Program : </strong>" . "<a href=http://localhost/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
+            $body .= "<strong>Link Program : </strong>" . "<a href=http://192.190.10.27/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
             $sendEmail = $this->smtpmail($email, $subject, $body);
 
             if(!$sendEmail){
@@ -581,7 +593,6 @@ public function get_dept_name($sql){
         $cp_detail_inves_detail = $this->input->post("cp_detail_inves_detail");
         $cp_detail_inves_signature = $this->input->post("cp_detail_inves_signature");
         $cp_detail_inves_dept = $this->input->post("cp_detail_inves_dept");
-//        $cp_detail_inves_date = "CURDATE()";
         
         $this->db->query("UPDATE complaint_main SET cp_detail_inves='$cp_detail_inves_detail' , cp_detail_inves_signature='$cp_detail_inves_signature' , cp_detail_inves_dept='$cp_detail_inves_dept' , cp_detail_inves_date=CURDATE() ");
         
@@ -608,10 +619,10 @@ public function get_dept_name($sql){
             foreach ($get_filename->result_array() as $gf){
                 $gff = $gf['file_name'];
                 
-            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://localhost/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
+            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://192.190.10.27/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
             }
             
-            $body .= "<strong>Link Program : </strong>" . "<a href=http://localhost/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
+            $body .= "<strong>Link Program : </strong>" . "<a href=http://192.190.10.27/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
             $sendEmail = $this->smtpmail($email, $subject, $body);
 
             if(!$sendEmail){
@@ -624,8 +635,6 @@ public function get_dept_name($sql){
         }
         }
     /***********Send Email for update status*******************/
-    
-    
     /** Insert Detail of investigate **/
     
     
@@ -638,14 +647,14 @@ public function get_dept_name($sql){
         $cp_sum = $this->input->post("cp_sum");
         
         if($cp_sum == "no"){
-            $this->db->query("UPDATE complaint_main SET cp_status='Normal complaint' ");
-        }else{
-            $this->db->query("UPDATE complaint_main SET cp_status='Transfered to NC' ");
+            $this->db->query("UPDATE complaint_main SET cp_status='Normal Complaint' ");
         }
-
-        $this->db->query("UPDATE complaint_main SET cp_status='Normal Complaint' ");
+        if($cp_sum == "yes"){
+            $this->db->query("UPDATE complaint_main SET cp_status='Transfered To NC' ");
+        }
         
         $result = $this->db->query("UPDATE complaint_main SET cp_sum_inves='$cp_sum_inves_detail' , cp_sum_inves_signature='$cp_sum_inves_signature' , cp_sum_inves_dept='$cp_sum_inves_dept' , cp_sum_inves_date=CURDATE() , cp_sum='$cp_sum' ");
+        
         
         if(!$result){
             echo "บันทึกข้อมูลไม่สำเร็จ";
@@ -653,8 +662,126 @@ public function get_dept_name($sql){
         }else{
             echo "<span style='color:green;'>บันทึกข้อมูลสำเร็จ !!</span>";
             
-        }    
+        }
+        
+        /*  Insert department to department table  */
+        $lab_code_sum = $this->input->post("lab_sum");
+        $admin_code_sum = $this->input->post("admin_sum");
+        $hr_code_sum = $this->input->post("hr_sum");
+        $account_code_sum = $this->input->post("account_sum");
+        $qc_code_sum = $this->input->post("qc_sum");
+        $maintenance_code_sum = $this->input->post("maintenance_sum");
+        $pd_code_sum = $this->input->post("pd_sum");
+        $sales_code_sum = $this->input->post("sales_sum");
+        $warehouse_code_sum = $this->input->post("warehouse_sum");
+        $planning_code_sum = $this->input->post("planning_sum");
+        $it_code_sum = $this->input->post("it_sum");
+        $qmr_code_sum = $this->input->post("qmr_sum");
+        
+        $dept_code1 = array(
+            "cp_rt_dept_cp_no" => $cp_no,
+            "cp_rt_dept_code" => $lab_code_sum,
+            "cp_rt_dept_status" => 1
+        );
+        $dept_code2 = array(
+            "cp_rt_dept_cp_no" => $cp_no,
+            "cp_rt_dept_code" => $admin_code_sum,
+            "cp_rt_dept_status" => 1
+        );
+        $dept_code3 = array(
+            "cp_rt_dept_cp_no" => $cp_no,
+            "cp_rt_dept_code" => $hr_code_sum,
+            "cp_rt_dept_status" => 1
+        );
+        $dept_code4 = array(
+            "cp_rt_dept_cp_no" => $cp_no,
+            "cp_rt_dept_code" => $account_code_sum,
+            "cp_rt_dept_status" => 1
+        );
+        $dept_code5 = array(
+            "cp_rt_dept_cp_no" => $cp_no,
+            "cp_rt_dept_code" => $qc_code_sum,
+            "cp_rt_dept_status" => 1
+        );
+        $dept_code6 = array(
+            "cp_rt_dept_cp_no" => $cp_no,
+            "cp_rt_dept_code" => $maintenance_code_sum,
+            "cp_rt_dept_status" => 1
+        );
+        $dept_code7 = array(
+            "cp_rt_dept_cp_no" => $cp_no,
+            "cp_rt_dept_code" => $pd_code_sum,
+            "cp_rt_dept_status" => 1
+        );
+        $dept_code8 = array(
+            "cp_rt_dept_cp_no" => $cp_no,
+            "cp_rt_dept_code" => $sales_code_sum,
+            "cp_rt_dept_status" => 1
+        );
+        $dept_code9 = array(
+            "cp_rt_dept_cp_no" => $cp_no,
+            "cp_rt_dept_code" => $warehouse_code_sum,
+            "cp_rt_dept_status" => 1
+        );
+        $dept_code10 = array(
+            "cp_rt_dept_cp_no" => $cp_no,
+            "cp_rt_dept_code" => $planning_code_sum,
+            "cp_rt_dept_status" => 1
+        );
+        $dept_code11 = array(
+            "cp_rt_dept_cp_no" => $cp_no,
+            "cp_rt_dept_code" => $it_code_sum,
+            "cp_rt_dept_status" => 1
+        );
+        $dept_code12 = array(
+            "cp_rt_dept_cp_no" => $cp_no,
+            "cp_rt_dept_code" => $qmr_code_sum,
+            "cp_rt_dept_status" => 1
+        );
+        
+        if($lab_code_sum != ""){
+            $this->db->insert("complaint_related_department",$dept_code1);
+        }else{}
+        if($admin_code_sum != ""){
+            $this->db->insert("complaint_related_department",$dept_code2);
+        }else{}
+        if($hr_code_sum != ""){
+            $this->db->insert("complaint_related_department",$dept_code3);
+        }else{}
+        if($account_code_sum != ""){
+            $this->db->insert("complaint_related_department",$dept_code4);
+        }else{}
+        if($qc_code_sum != ""){
+            $this->db->insert("complaint_related_department",$dept_code5);
+        }else{}
+        if($maintenance_code_sum != ""){
+            $this->db->insert("complaint_related_department",$dept_code6);
+        }else{}
+        if($pd_code_sum != ""){
+            $this->db->insert("complaint_related_department",$dept_code7);
+        }else{}
+        if($sales_code_sum != ""){
+            $this->db->insert("complaint_related_department",$dept_code8);
+        }else{}
+        if($warehouse_code_sum != ""){
+            $this->db->insert("complaint_related_department",$dept_code9);
+        }else{}
+        if($planning_code_sum != ""){
+            $this->db->insert("complaint_related_department",$dept_code10);
+        }else{}
+        if($it_code_sum != ""){
+            $this->db->insert("complaint_related_department",$dept_code11);
+        }else{}
+        if($qmr_code_sum != ""){
+            $this->db->insert("complaint_related_department",$dept_code12);
+        }else{}
+        /*  Insert department to department table  */
+        
+        
     }
+    
+    
+    
 
 /***********Send Email Change Status********************** */
     public function emailChangeStat3($cp_no){
@@ -664,11 +791,13 @@ public function get_dept_name($sql){
             
             $getEmail = $this->db->query("select * from maillist where deptcode='$resultDeptEm' ");
             
-            foreach ($getEmail->result_array() as $gemail){
+            $check_status = $this->db->query("SELECT cp_status FROM complaint_main WHERE cp_no='$cp_no' ");
+            if($check_status=="Transfer To NC"){
+                foreach ($getEmail->result_array() as $gemail){
                $email = $gemail['email'];
                 
-                $subject = "Normal Complaint";
-            $body = "<h2>Summary of Investigation Complete</h2>";
+                $subject = "Transfer To NC";
+            $body = "<h2>The Complaint is transfer to nc.</h2>";
             $body .= "<strong>Complaint No. : </strong>" . $cp_no . "<br>";
       
             
@@ -676,10 +805,10 @@ public function get_dept_name($sql){
             foreach ($get_filename->result_array() as $gf){
                 $gff = $gf['file_name'];
                 
-            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://localhost/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
+            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://192.190.10.27/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
             }
             
-            $body .= "<strong>Link Program : </strong>" . "<a href=http://localhost/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
+            $body .= "<strong>Link Program : </strong>" . "<a href=http://192.190.10.27/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
             $sendEmail = $this->smtpmail($email, $subject, $body);
 
             if(!$sendEmail){
@@ -689,16 +818,17 @@ public function get_dept_name($sql){
             }
             
             }
+            }
+            
         }
     }
 /***********Send Email Change Status********************** */
-
-
     /** Insert Summary of investigate **/
+  
     
     
 /* Insert conclusion complaint */
-    public function save_conclusion(){
+    public function save_conclusion($cp_no){
         $cp_conclu_detail = $this->input->post("cp_conclu_detail");
         $cp_conclu_signature = $this->input->post("cp_conclu_signature");
         $cp_conclu_dept = $this->input->post("cp_conclu_dept");
@@ -728,10 +858,10 @@ public function get_dept_name($sql){
             foreach ($get_filename->result_array() as $gf){
                 $gff = $gf['file_name'];
                 
-            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://localhost/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
+            $body .= "<strong>Link Attached File : </strong>" . "<a href=http://192.190.10.27/complaint_new/asset/$gff>" .$gff. "</a>" . "<br>";
             }
             
-            $body .= "<strong>Link Program : </strong>" . "<a href=http://localhost/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
+            $body .= "<strong>Link Program : </strong>" . "<a href=http://192.190.10.27/complaint_new/complaint/investigation/".$cp_no.">" . "Go to Page</a>";
             $sendEmail = $this->smtpmail($email, $subject, $body);
 
             if(!$sendEmail){

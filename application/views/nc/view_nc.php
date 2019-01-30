@@ -4,11 +4,6 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<?php  
-    if($rs['cp_status']!="New Complaint"){
-        redirect('/complaint/investigation/'.$rs['cp_no']);
-    }
-?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -192,7 +187,7 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                     <?php  
-                                        if($rs['cp_status']== "New Complaint"){
+                                        if($rs['cp_status']== "New complaint"){
                                             $rr = 'readonly=""';
                                         }else{
                                             $rr = "";

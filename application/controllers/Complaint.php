@@ -7,6 +7,7 @@
         }
 
         public function index(){
+        $this->login_model->callLogin();
         $data['getuser'] = $this->login_model->getuser();
         $data['getdataall'] = $this->complaint_model->getDataAll();
 
@@ -30,6 +31,7 @@
             
 
             $this->load->view("head/headcode");
+            $this->load->view("head/script");
             $this->load->view("main_form/new_complaint",$data);
         }
         
@@ -40,6 +42,7 @@
         }
         
         public function viewComplaint($cp_no){
+        $this->login_model->callLogin();
         $data['topic'] = $this->complaint_model->gettopic();
         $data['rs'] = $this->complaint_model->edit_complaint($cp_no);
         $data['editpriority1'] = $this->complaint_model->editPriority("select * from complaint_priority_use where cp_pri_use_group=1 and cp_pri_use_cpno ='$cp_no' ");
@@ -83,7 +86,9 @@
         $data['get_upload_file'] = $this->complaint_model->get_file_upload("select * from complaint_file_upload where file_cp_no ='$cp_no' ");
         $data['get_dept_name'] = $this->complaint_model->get_dept_name("SELECT complaint_department.cp_dept_id, complaint_department.cp_dept_code, complaint_department.cp_dept_cp_no, member.Dept FROM complaint_department INNER JOIN member ON member.DeptCode = complaint_department.cp_dept_code WHERE complaint_department.cp_dept_cp_no = '$cp_no' GROUP BY complaint_department.cp_dept_code DESC");
             
+            
             $this->load->view("head/headcode");
+            $this->load->view("head/script");
             $this->load->view("main_form/investigate_complaint",$data);
         }
         
@@ -103,7 +108,7 @@
 
         public function add_conclusion($cp_no){
             $this->complaint_model->save_conclusion($cp_no);
-            // $this->complaint_model->emailChangeStat4($cp_no);
+            $this->complaint_model->emailChangeStat4($cp_no);
             redirect('/complaint/investigation/'.$cp_no);
         }
         

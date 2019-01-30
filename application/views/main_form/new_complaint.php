@@ -68,7 +68,7 @@ and open the template in the editor.
 
                                         <div class="col-md-2">
                                             <label hidden=""><b>Status</b></label>
-                                            <input type="text" name="cp_status" id="cp_status" value="New complaint" hidden=""/>
+                                            <input type="text" name="cp_status" id="cp_status" value="New Complaint" hidden=""/>
                                         </div>
                                     </div>
                                 </div>
@@ -287,30 +287,6 @@ and open the template in the editor.
                                 </div>
                             </div>
 
-                            <script>
-                                            $(document).ready(function () {
-                                                $("#cp_topic").change(function(){
-                                                    var value = $("#cp_topic_cat").val();
-                                        if (value == "Safety" || value=="System" || value=="Environment"){
-                                            
-                                            $('#h_username').hide();
-                                            $('#cp_cus_name').val("Saleecolour");
-                                            $('#h_cusref').hide();
-                                            $('#h_inv').hide();
-                                            $('#h_procode').hide();
-                                            $('#h_lotno').hide();
-                                            $('#h_qty').hide();
-                                        }else{
-                                            $('#h_username').show();
-                                            $('#h_cusref').show();
-                                            $('#h_inv').show();
-                                            $('#h_procode').show();
-                                            $('#h_lotno').show();
-                                            $('#h_qty').show();
-                                        }
-                                                });
-                                            });
-                                        </script>
 
                             <div class="card border-light mb-3">
                                 <div class="card-header"><h4><b><i class="far fa-id-card"></i>&nbsp;&nbsp;Details of Complaint / Damages</b></h4></div>
@@ -392,7 +368,7 @@ and open the template in the editor.
 
 
                             <div class="card border-light mb-3">
-                                <div class="card-header"><h4><b><i class="fas fa-envelope-open"></i>&nbsp;&nbsp;List email for send this complaint</b></h4></div>
+                                <div class="card-header"><h4><b><i class="fas fa-envelope-open"></i>&nbsp;&nbsp;Related Department</b></h4></div>
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-2 new_center_text">

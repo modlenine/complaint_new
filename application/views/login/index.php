@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <?php
     if(isset($_SESSION['username'])!= ""){
-    header('Location: http://localhost/complaint_new/complaint/');
+    header('Location: http://192.190.10.27/complaint_new/complaint/');
 }
 ?>
 <html>
@@ -18,7 +18,7 @@ and open the template in the editor.
         <div class="container">
             <div class="mainlogin">
             <p><h1 style="text-align: center;">Form Login</h1></p>
-            <form name="frmLogin" method="post" action="http://localhost/complaint_new/login/checklogin" id="">
+            <form name="frmLogin" method="post" action="http://192.190.10.27/complaint_new/login/checklogin" id="">
             <p><label>Username : </label><input type="text" name="username" id="username" class="form-control"/></p>
             <p><label>Password : </label><input type="password" name="password" id="password" class="form-control"/></p>
             <p><input type="submit" name="btnLogin" ></p>

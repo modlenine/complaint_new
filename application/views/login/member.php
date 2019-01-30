@@ -20,6 +20,6 @@ if(isset($_SESSION['username'])== ""){
     </head>
     <body>
         <span>Welcome : </span><?php echo $getuser['Fname']; ?>&nbsp;<?php echo $getuser['Lname']; ?>
-        <a href="http://localhost/complaint_new/login/logout"><input type="submit" name="logout" value="logout" /></a>
+        <a href="http://192.190.10.27/complaint_new/login/logout"><input type="submit" name="logout" value="logout" /></a>
     </body>
 </html>

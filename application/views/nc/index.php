@@ -13,7 +13,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>NC</title>
         
         
 <!-- CSS + Javascript => Datatable -->
@@ -41,10 +41,13 @@ and open the template in the editor.
                     <?php $this->load->view("head/navleft"); ?>
                 </div>
                 <!-- Nav Left Menu From view folder -->
+                
+                
+                
 
                 <div class="col-md-10"><!-- Container  -->
                     <div>
-                        <h1 style="text-align: center;">List of complaint</h1>
+                        <h1 style="text-align: center;">List of NC</h1>
                         <hr>
                     </div>
                     <table id="mytable" class="table table-hover table-bordered display responsive nowarp" style="width:100%">
@@ -60,36 +63,37 @@ and open the template in the editor.
                     </tr>
                 </thead>
                 
-                <?php foreach ($getdataall->result() as $gda): ?>
+                <?php foreach ($transfrom_cp->result() as $trf_cp): ?>
                     <tr align="center">
-                        <td ><strong><a href="<?php 
-                        if($gda->cp_status == "Investigating" || $gda->cp_status == "Investigated" || $gda->cp_status == "Normal Complaint" || $gda->cp_status == "Close Complaint" || $gda->cp_status == "Transfered To NC"){
-                            echo base_url(); ?>complaint/investigation/<?php echo $gda->cp_no;
-                        }else{
-                            echo base_url(); ?>complaint/viewcomplaint/<?php echo $gda->cp_no;
-                        }
-                         
-                        ?>"><?php echo $gda->cp_no; ?></a></strong></td>
-                        <td ><?php echo $gda->cp_date; ?></td>
-                        <td ><?php echo $gda->cp_user_name; ?></td>
-                        <td ><?php echo $gda->cp_topic; ?></td>
-                        <td ><?php echo $gda->cp_cus_name; ?></td>
-                        <td ><?php echo $gda->cp_status; ?></td>
+                        <td ><span class="badge badge-primary">NC</span>&nbsp;<strong><a href="http://192.190.10.27/complaint_new/nc/add_nc/<?php echo $trf_cp->cp_no;?>"><?php echo $trf_cp->cp_no; ?></a></strong></td>
+                        <td ><?php echo $trf_cp->cp_date; ?></td>
+                        <td ><?php echo $trf_cp->cp_user_name; ?></td>
+                        <td ><?php echo $trf_cp->cp_topic; ?></td>
+                        <td ><?php echo $trf_cp->cp_cus_name; ?></td>
+                        <td >
+                            <?php 
+                            if($trf_cp->cp_status == "Transfered To NC"){
+                                $change_status = "Transfrom Complaint";
+                            }
+                            echo $change_status; 
+                            
+                            ?>
+                        </td>
                         <td>
                             <?php 
-                                if($gda->cp_priority >= 4.00 ){//4.10 -5.00
+                                if($trf_cp->cp_priority >= 4.00 ){//4.10 -5.00
                                     $str_gda = "<strong style='color:red;'>Very Hight</strong>";
                                 }
-                                if($gda->cp_priority >= 3.00 and $gda->cp_priority < 4.00){//3.10 - 4.00
+                                if($trf_cp->cp_priority >= 3.00 and $trf_cp->cp_priority < 4.00){//3.10 - 4.00
                                     $str_gda = "<strong style='color:orange;'>Hight</strong>";
                                 }
-                                if($gda->cp_priority >= 2.00 and $gda->cp_priority < 3.00){//2.10 - 3.00
+                                if($trf_cp->cp_priority >= 2.00 and $trf_cp->cp_priority < 3.00){//2.10 - 3.00
                                     $str_gda = "<strong>Normal</strong>";
                                 }
-                                if($gda->cp_priority >= 1.00 and $gda->cp_priority < 2.00){//1.10 - 2.00
+                                if($trf_cp->cp_priority >= 1.00 and $trf_cp->cp_priority < 2.00){//1.10 - 2.00
                                     $str_gda = "<strong style='color:#BEBEBE;'>Low</strong>";
                                 }
-                                if($gda->cp_priority >= 0 and $gda->cp_priority < 1.00){//0 - 1.00
+                                if($trf_cp->cp_priority >= 0 and $trf_cp->cp_priority < 1.00){//0 - 1.00
                                     $str_gda = "<strong style='color:#ccc;'>Very Low</strong>";
                                 }
                                 echo $str_gda;

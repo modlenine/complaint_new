@@ -24,6 +24,10 @@ and open the template in the editor.
         
         <style>
             /*------------- Main site code-------------------------*/
+            .nc_color_font{
+                color:#444;
+            }
+            
             a {
                 color:#565656 !important;
             }

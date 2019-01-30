@@ -71,29 +71,6 @@ and open the template in the editor.
                                             <label><?php echo $getuser['Dept']; ?></label>
                                         </div>
                                         
-                                        <script>
-                                            $(document).ready(function () {
-//                                                $("#cp_topic").load(function(){
-                                                    var value = $("#cp_topic_cat").val();
-                                        if (value == "Safety" || value=="System" || value=="Environment"){
-                                            
-                                            $('#h_username').hide();
-                                            $('#h_cusref').hide();
-                                            $('#h_inv').hide();
-                                            $('#h_procode').hide();
-                                            $('#h_lotno').hide();
-                                            $('#h_qty').hide();
-                                        }else{
-                                            $('#h_username').show();
-                                            $('#h_cusref').show();
-                                            $('#h_inv').show();
-                                            $('#h_procode').show();
-                                            $('#h_lotno').show();
-                                            $('#h_qty').show();
-                                        }
-//                                                });
-                                            });
-                                        </script>
                                         
                                         <div class="col-md-3">
                                             <label><b>Status :</b></label>
@@ -188,7 +165,7 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                     <?php 
-                                            if($rs['cp_status']=="Investigating" || $rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint"){
+                                            if($rs['cp_status']=="Investigating" || $rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint" || $rs['cp_status']=="Close Complaint" || $rs['cp_status']=="Transfered To NC"){
                                                 $detail_of_cp = ' readonly="" ';
                                             }else{
                                                 $detail_of_cp = "";
@@ -202,7 +179,7 @@ and open the template in the editor.
                                         <div class="col-md-6">
                                             <?php foreach ($get_upload_file as $guf): ?>
                                             <label><b>Attached file :</b></label>
-                                            <label><a href="http://localhost/complaint_new/asset/<?php echo $guf['file_name']; ?>" target="_blank"><?php echo $guf['file_name']; ?></a></label><br>
+                                            <label><a href="http://192.190.10.27/complaint_new/asset/<?php echo $guf['file_name']; ?>" target="_blank"><?php echo $guf['file_name']; ?></a></label><br>
                                             <?php endforeach; ?>
                                         </div>
                                         <div class="col-md-3">
@@ -212,23 +189,7 @@ and open the template in the editor.
                                 </div>
                             </div><hr>
 
-                            <script>
-                                            $(document).ready(function () {
-//                                                $("#cp_topic").change(function(){
-                                                    var value = $("#status_check").val();
-                                        if (value == "Investigating"){
-                                            
-                                            $('.Summary').hide();
-                                            
-                                            
-                                        }
-                                        if (value == "Investigated"){
-                                            $('#save').hide();
-                                            
-                                        }
-//                                                });
-                                            });
-                                        </script>
+
 <!-- *******Details of Complaint*********************Details of Complaint*********************Details of Complaint************ -->                                        
                                         
                                         
@@ -249,7 +210,7 @@ and open the template in the editor.
                                         <div class="col-md-8">
                                         <label><b>Detail of investigate</b></label>
                                         <?php 
-                                            if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint"){
+                                            if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint" || $rs['cp_status']=="Close Complaint" || $rs['cp_status']=="Transfered To NC"){
                                                 $hh = ' readonly="" ';
                                             }else{
                                                 $hh = "";
@@ -262,7 +223,7 @@ and open the template in the editor.
                                         
                                         <div class="col-md-2">
                                             <?php  
-                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint"){
+                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint" || $rs['cp_status']=="Close Complaint" || $rs['cp_status']=="Transfered To NC"){
                                             ?>
                                             <label><b>Signature :</b></label>
                                             <label><?php echo $rs['cp_detail_inves_signature']; ?></label>
@@ -276,7 +237,7 @@ and open the template in the editor.
                                         
                                         <div class="col-md-2">
                                             <?php  
-                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint"){
+                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint" || $rs['cp_status']=="Close Complaint" || $rs['cp_status']=="Transfered To NC"){
                                             ?>
                                             <label><b>Department :</b></label>
                                             <label><?php echo $rs['cp_detail_inves_dept']; ?></label>
@@ -290,7 +251,7 @@ and open the template in the editor.
                                         
                                         <div class="col-md-2">
                                             <?php  
-                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint"){
+                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint" || $rs['cp_status']=="Close Complaint" || $rs['cp_status']=="Transfered To NC"){
                                             ?>
                                             <label><b>Date :</b></label>
                                             <label><?php echo $rs['cp_detail_inves_date']; ?></label>
@@ -376,39 +337,134 @@ and open the template in the editor.
                                             <?php } ?>
                                         </div>
                                     </div><br>
+                                    
+
+                                    
                                     <div class="form-row">
                                             <?php if($rs['cp_sum_inves']!="" && $rs['cp_sum']=="no"){ ?>
                                         
                                         <div class="col-md-2">
-                                            <label><b>ไม่เป็นความบกพร่องของบริษัท :</b></label>
-                                            <input type="radio" name="cp_sum" checked=""/>
+                                            <label><b>ไม่เป็นข้อบกพร่องของบริษัท :</b></label>
+                                            <input type="radio" id="cp_sum" name="cp_sum" checked=""/>
                                         </div>
                                         <div class="col-md-2">
-                                            <label><b>เป็นความบกพร่องของบริษัท :</b></label>
-                                            <input type="radio" name="cp_sum" />
+                                            <label><b>เป็นข้อบกพร่องของบริษัท :</b></label>
+                                            <input type="radio" id="cp_sum" name="cp_sum" />
                                         </div>
                                         
                                             <?php }else if ($rs['cp_sum_inves']!="" && $rs['cp_sum']=="yes"){ ?>
                                         <div class="col-md-2">
-                                            <label><b>ไม่เป็นความบกพร่องของบริษัท :</b></label>
-                                            <input type="radio" name="cp_sum" />
+                                            <label><b>ไม่เป็นข้อบกพร่องของบริษัท :</b></label>
+                                            <input type="radio" id="cp_sum" name="cp_sum" />
                                         </div>
                                         <div class="col-md-2">
-                                            <label><b>เป็นความบกพร่องของบริษัท :</b></label>
-                                            <input type="radio" name="cp_sum" checked=""/>
-                                        </div>
-                                            
+                                            <label><b>เป็นข้อบกพร่องของบริษัท :</b></label>
+                                            <input type="radio" id="cp_sum" name="cp_sum" checked=""/>
+                                        </div> 
                                             <?php }else{ ?>
                                         <div class="col-md-2">
-                                            <label><b>ไม่เป็นความบกพร่องของบริษัท :</b></label>
-                                            <input type="radio" name="cp_sum" value="no"/>
+                                            <label><b>ไม่เป็นข้อบกพร่องของบริษัท :</b></label>
+                                            <input type="radio" id="cp_sum" name="cp_sum" value="no"/>
                                         </div>
                                         <div class="col-md-2">
-                                            <label><b>เป็นความบกพร่องของบริษัท :</b></label>
-                                            <input type="radio" name="cp_sum" value="yes"/>
+                                            <label><b>เป็นข้อบกพร่องของบริษัท :</b></label>
+                                            <input type="radio" id="cp_sum" name="cp_sum" value="yes"/>
                                         </div>
                                             <?php } ?>
                                     </div><hr>
+                                    
+                                                                     
+     <!-- ************************************************************************************************* -->                              
+                                    <div class="card border-light mb-3 transfer">
+                                <div class="card-header"><h4><b><i class="fas fa-envelope-open"></i>&nbsp;&nbsp;Related Department</b></h4></div>
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="col-md-2 new_center_text">
+                                            <input type="checkbox" name="lab_sum" id="lab_sum" value="1015"/>
+                                            <label for="lab"><b>LAB</b></label>
+                                            <br>
+                                            <i for="lab" class="fas fa-flask fa-2x"></i>
+                                        </div>
+
+                                        <div class="col-md-2 new_center_text">
+                                            <input type="checkbox" name="admin_sum" id="admin_sum" value="1001"/>
+                                            <label for="admin"><b>ADMIN</b></label>
+                                            <br>
+                                            <i class="fas fa-building fa-2x"></i>
+                                        </div>
+
+                                        <div class="col-md-2 new_center_text">
+                                            <input type="checkbox" name="hr_sum" id="hr_sum" value="1005"/>
+                                            <label for="hr"><b>HR</b></label>
+                                            <br>
+                                            <i class="fas fa-male fa-2x"></i>
+                                        </div>
+
+                                        <div class="col-md-2 new_center_text">
+                                            <input type="checkbox" name="account_sum" id="account_sum" value="1003"/>
+                                            <label for="ac"><b>ACCOUNT & FINANCE</b></label>
+                                            <br>
+                                            <i class="fas fa-hand-holding-usd fa-2x"></i>
+                                        </div>
+                                        <div class="col-md-2 new_center_text">
+                                            <input type="checkbox" name="qc_sum" id="qc_sum" value="1014"/>
+                                            <label for="qc"><b>QC</b></label>
+                                            <br>
+                                            <i class="fas fa-check-circle fa-2x"></i>
+                                        </div>
+                                        <div class="col-md-2 new_center_text">
+                                            <input type="checkbox" name="maintenance_sum" id="maintenance_sum" value="1009"/>
+                                            <label for="maintenance"><b>MAINTENANCE</b></label>
+                                            <br>
+                                            <i class="fas fa-screwdriver fa-2x"></i>
+                                        </div>
+                                    </div><br>
+                                    <div class="form-row">
+                                        <div class="col-md-2 new_center_text">
+                                            <input type="checkbox" name="pd_sum" id="pd_sum" value="1007"/>
+                                            <label for="pd"><b>PD</b></label>
+                                            <br>
+                                            <i class="fas fa-industry fa-2x"></i>
+                                        </div>
+
+                                        <div class="col-md-2 new_center_text">
+                                            <input type="checkbox" name="sales_sum" id="sales_sum" value="1006"/>
+                                            <label for="sales"><b>SALES</b></label>
+                                            <br>
+                                            <i class="fas fa-hand-holding-usd fa-2x"></i>
+                                        </div>
+
+                                        <div class="col-md-2 new_center_text">
+                                            <input type="checkbox" name="warehouse_sum" id="warehouse_sum" value="1013"/>
+                                            <label for="warehouse"><b>WAREHOUSE</b></label>
+                                            <br>
+                                            <i class="fas fa-warehouse fa-2x"></i>
+                                        </div>
+
+                                        <div class="col-md-2 new_center_text">
+                                            <input type="checkbox" name="planning_sum" id="planning_sum" value="1010"/>
+                                            <label for="planning"><b>PLANNING</b></label>
+                                            <br>
+                                            <i class="far fa-calendar-alt fa-2x"></i>
+                                        </div>
+                                        <div class="col-md-2 new_center_text">
+                                            <input type="checkbox" name="it_sum" id="it_sum" value="1002"/>
+                                            <label for="it"><b>IT</b></label>
+                                            <br>
+                                            <i class="fas fa-laptop fa-2x"></i>
+                                        </div>
+                                        <div class="col-md-2 new_center_text">
+                                            <input type="checkbox" name="qmr_sum" id="qmr_sum" value="1099"/>
+                                            <label for="it"><b>QMR</b></label>
+                                            <br>
+                                            <i class="fas fa-laptop fa-2x"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div><hr>
+   <!-- ************************************************************************************************* -->
+                                    
                                     
                                     <?php  
                                         if($getuser['Dept']== "QMR" && $rs['cp_sum_inves']==""){    
@@ -427,7 +483,7 @@ and open the template in the editor.
 
 <!-- ************ Conclusion of complaint **************** Conclusion of complaint ************** Conclusion of complaint ******* -->
                             <form name="invesform" method="post" action="<?php echo base_url(); ?>complaint/add_conclusion/<?php echo $rs['cp_no']; ?>">
-                            <div class="card border-light mb-3 Investigation">
+                            <div class="card border-light mb-3 Conclusion">
                                 <div class="card-header"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Conclusion of Complaint</b></h4><br>
                                     <label><b>The relevant departments. QMR</b></label><br>
                                 </div>

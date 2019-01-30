@@ -25,7 +25,7 @@ class Login_model extends CI_Model{
         
         if($checkdata == 0){
             echo "<h2 style='color:red;text-align:center;margin-top:30px;'>Username หรือ Password ไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง</h2>";
-            header("refresh:2; url=http://localhost/complaint_new/");
+            header("refresh:2; url=http://192.190.10.27/complaint_new/");
         }else{
             echo "<h2 style='text-align:center;color:green;margin-top:30px;'>เข้าสู่ระบบสำเร็จ กรุณารอสักครู่ระบบกำลังพาท่านเข้าสู่หน้าโปรแกรม</h2>";
             foreach ($checkuser->result_array() as $r){
@@ -37,10 +37,10 @@ class Login_model extends CI_Model{
                 
                 if($r['posi']==75){
                     echo "<h3 style='color:green;text-align:center;'>"."Welcome ".$r['Fname']."Permission : Admin"."</h3>";
-                    header("refresh:2; url=http://localhost/complaint_new/complaint");
+                    header("refresh:2; url=http://192.190.10.27/complaint_new/complaint");
                 }else if($r['posi']==15){
                     echo "<h3 style='color:green;text-align:center;'>"."Welcome ".$r['Fname']."Permission : user"."</h3>";
-                    header("refresh:2; url=http://localhost/complaint_new/complaint");
+                    header("refresh:2; url=http://192.190.10.27/complaint_new/complaint");
                 }
             }
         }
@@ -50,7 +50,7 @@ class Login_model extends CI_Model{
     public function callLogin(){
         if (isset($_SESSION['username']) == "") {
             echo "<h1 style='text-align:center;margin-top:50px;'>กรุณา Login เข้าสู่ระบบ</h1>";
-    header("refresh:2; url=http://localhost/complaint_new/");
+    header("refresh:2; url=http://192.190.10.27/complaint_new/");
     die();
 }
     }
@@ -72,7 +72,7 @@ class Login_model extends CI_Model{
     
     public function logout(){
         session_destroy();
-	header("location:http://localhost/complaint_new/login");
+	header("location:http://192.190.10.27/complaint_new/login");
     }
     
     
