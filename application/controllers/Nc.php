@@ -13,6 +13,7 @@
             $this->login_model->callLogin();
             $data['getuser'] = $this->login_model->getuser();
             $data['transfrom_cp'] = $this->nc_model->transfrom_complaint();
+            $data['get_nc2'] = $this->nc_model->get_nc2();
             
             $this->load->view("head/headcode");
             $this->load->view("head/script");
@@ -27,6 +28,7 @@
             $data['get_upload_file'] = $this->complaint_model->get_file_upload("select * from complaint_file_upload where file_cp_no ='$cp_no' ");
             $data['get_rela_dept'] = $this->nc_model->get_related_dept($cp_no);
             $data['get_nc'] = $this->nc_model->get_nc($cp_no);
+            $data['get_rel_dept'] = $this->nc_model->get_rel_dept($cp_no);
             
             
             $this->load->view("head/headcode");

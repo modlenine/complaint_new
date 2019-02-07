@@ -25,8 +25,8 @@ and open the template in the editor.
                             <h1 style="text-align: center;">Complaint Form</h1><hr>
 
 
-                            <div class="card border-light mb-3">
-                                <div class="card-header"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Topic</b></h4></div>
+                            <div class="card border-info mb-3">
+                                <div class="card-header text-white bg-info"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Topic</b></h4></div>
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-2">
@@ -72,11 +72,11 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div><br>
                             
                             
-                            <div class="card border-light mb-3">
-                                <div class="card-header"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Priority</b></h4></div>
+                            <div class="card border-success mb-3">
+                                <div class="card-header text-white bg-success"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Priority</b></h4></div>
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-3">
@@ -90,8 +90,8 @@ and open the template in the editor.
                                             }
                                             </script>
                                         
-                                            <label >Customer Satisfaction</label>
-                                            <select class="form-control" name="pri1" id="pri1" OnChange="resutName1(this.value);">
+                                            <label ><b>Customer Satisfaction</b></label>
+                                            <select class="form-control form-control-sm" name="pri1" id="pri1" OnChange="resutName1(this.value);">
                                                 <option>Please choose value</option>
                                                 <?php foreach ($get_cp_priority1->result_array() as $g1):?>
                                                 <option value="<?php echo $g1['cp_pri_score']; ?>|<?php echo $g1['cp_pri_group']; ?>|<?php echo $g1['cp_pri_name']; ?>"><?php echo $g1['cp_pri_name']; ?></option>
@@ -112,8 +112,8 @@ and open the template in the editor.
                                             }
                                             </script>
                                             
-                                            <label>Production Loss</label>
-                                            <select class="form-control" name="pri2" id="pri2" OnChange="resutName2(this.value);">
+                                            <label><b>Production Loss</b></label>
+                                            <select class="form-control form-control-sm" name="pri2" id="pri2" OnChange="resutName2(this.value);">
                                                 <option>Please choose value</option>
                                                 <?php foreach ($get_cp_priority2->result_array() as $g2): ?>
                                                 <option value="<?php echo $g2['cp_pri_score']; ?>|<?php echo $g2['cp_pri_group']; ?>|<?php echo $g2['cp_pri_name']; ?>"><?php echo $g2['cp_pri_name']; ?></option>
@@ -134,8 +134,8 @@ and open the template in the editor.
                                             }
                                             </script>
                                             
-                                            <label>Business Disruption</label>
-                                            <select class="form-control" name="pri3" id="pri3" OnChange="resutName3(this.value);">
+                                            <label><b>Business Disruption</b></label>
+                                            <select class="form-control form-control-sm" name="pri3" id="pri3" OnChange="resutName3(this.value);">
                                                 <option>Please choose value</option>
                                                 <?php foreach ($get_cp_priority3->result_array() as $g3): ?>
                                                 <option value="<?php echo $g3['cp_pri_score']; ?>|<?php echo $g3['cp_pri_group']; ?>|<?php echo $g3['cp_pri_name']; ?>"><?php echo $g3['cp_pri_name']; ?></option>
@@ -156,8 +156,8 @@ and open the template in the editor.
                                             }
                                             </script>
                                             
-                                            <label>Machinery performance</label>
-                                            <select class="form-control" name="pri4" id="pri4" OnChange="resutName4(this.value);">
+                                            <label><b>Machinery performance</b></label>
+                                            <select class="form-control form-control-sm" name="pri4" id="pri4" OnChange="resutName4(this.value);">
                                                 <option>Please choose value</option>
                                                 <?php foreach ($get_cp_priority4->result_array() as $g4): ?>
                                                 <option value="<?php echo $g4['cp_pri_score']; ?>|<?php echo $g4['cp_pri_group']; ?>|<?php echo $g4['cp_pri_name']; ?>"><?php echo $g4['cp_pri_name']; ?></option>
@@ -180,8 +180,8 @@ and open the template in the editor.
                                             }
                                             </script>
                                             
-                                            <label>The image of enterprise</label>
-                                            <select class="form-control" name="pri5" id="pri5" OnChange="resutName5(this.value);">
+                                            <label><b>The image of enterprise</b></label>
+                                            <select class="form-control form-control-sm" name="pri5" id="pri5" OnChange="resutName5(this.value);">
                                                 <option>Please choose value</option>
                                                 <?php foreach($get_cp_priority5->result_array() as $g5): ?>
                                                 <option value="<?php echo $g5['cp_pri_score']; ?>|<?php echo $g5['cp_pri_group']; ?>|<?php echo $g5['cp_pri_name']; ?>"><?php echo $g5['cp_pri_name']; ?></option>
@@ -202,8 +202,8 @@ and open the template in the editor.
                                             }
                                             </script>
                                             
-                                            <label>Complaints</label>
-                                            <select class="form-control" name="pri6" id="pri6" OnChange="resutName6(this.value);">
+                                            <label><b>Complaints</b></label>
+                                            <select class="form-control form-control-sm" name="pri6" id="pri6" OnChange="resutName6(this.value);">
                                                 <option>Please choose value</option>
                                                 <?php foreach($get_cp_priority6->result_array() as $g6): ?>
                                                 <option value="<?php echo $g6['cp_pri_score']; ?>|<?php echo $g6['cp_pri_group']; ?>|<?php echo $g6['cp_pri_name']; ?>"><?php echo $g6['cp_pri_name']; ?></option>
@@ -224,8 +224,8 @@ and open the template in the editor.
                                             }
                                             </script>
                                             
-                                            <label>Impact on personal</label>
-                                            <select class="form-control" name="pri7" id="pri7" OnChange="resutName7(this.value);">
+                                            <label><b>Impact on personal</b></label>
+                                            <select class="form-control form-control-sm" name="pri7" id="pri7" OnChange="resutName7(this.value);">
                                                 <option>Please choose value</option>
                                                 <?php foreach($get_cp_priority7->result_array() as $g7): ?>
                                                 <option value="<?php echo $g7['cp_pri_score']; ?>|<?php echo $g7['cp_pri_group']; ?>|<?php echo $g7['cp_pri_name']; ?>"><?php echo $g7['cp_pri_name']; ?></option>
@@ -251,17 +251,17 @@ and open the template in the editor.
                                         </script>
                                         
                                         <div class="col-md-3">
-                                            <label>Summary Score</label>
-                                            <input type="text" id="sum_score" name="sum_score" class="form-control" readonly="" /><!-- ค่าเฉลี่ยของคะแนนทั้งหมด -->
+                                            <label><b>Summary Score</b></label>
+                                            <input type="text" id="sum_score" name="sum_score" class="form-control form-control-sm" readonly="" /><!-- ค่าเฉลี่ยของคะแนนทั้งหมด -->
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div><br>
                             
 
 
-                            <div class="card border-light mb-3">
-                                <div class="card-header"><h4><b><i class="fas fa-user-circle"></i>&nbsp;&nbsp;User Information</b></h4></div>
+                            <div class="card border-info mb-3">
+                                <div class="card-header text-white bg-info"><h4><b><i class="fas fa-user-circle"></i>&nbsp;&nbsp;User Information</b></h4></div>
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-3">
@@ -285,11 +285,11 @@ and open the template in the editor.
                                     </div>
 
                                 </div>
-                            </div>
+                            </div><br>
 
 
-                            <div class="card border-light mb-3">
-                                <div class="card-header"><h4><b><i class="far fa-id-card"></i>&nbsp;&nbsp;Details of Complaint / Damages</b></h4></div>
+                            <div class="card border-success mb-3">
+                                <div class="card-header text-white bg-success"><h4><b><i class="far fa-id-card"></i>&nbsp;&nbsp;Details of Complaint / Damages</b></h4></div>
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-3" id="h_username">
@@ -366,13 +366,14 @@ and open the template in the editor.
                                 </div>
                             </div>
 
+                            
 
                             <div class="card border-light mb-3">
                                 <div class="card-header"><h4><b><i class="fas fa-envelope-open"></i>&nbsp;&nbsp;Related Department</b></h4></div>
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-2 new_center_text">
-                                            <input type="checkbox" name="lab" id="lab" value="1015"/>
+                                            <input type="checkbox" name="lab" id="lab" value="1015" />
                                             <label for="lab"><b>LAB</b></label>
                                             <br>
                                             <i for="lab" class="fas fa-flask fa-2x"></i>
@@ -396,7 +397,7 @@ and open the template in the editor.
                                             <input type="checkbox" name="account" id="account" value="1003"/>
                                             <label for="ac"><b>ACCOUNT & FINANCE</b></label>
                                             <br>
-                                            <i class="fas fa-hand-holding-usd fa-2x"></i>
+                                            <i class="far fa-credit-card fa-2x"></i>
                                         </div>
                                         <div class="col-md-2 new_center_text">
                                             <input type="checkbox" name="qc" id="qc" value="1014"/>
@@ -446,10 +447,10 @@ and open the template in the editor.
                                             <i class="fas fa-laptop fa-2x"></i>
                                         </div>
                                         <div class="col-md-2 new_center_text">
-                                            <input checked="" type="checkbox" name="qmr" id="qmr" value="1099"/>
-                                            <label for="it"><b>QMR</b></label>
+                                            <input type="checkbox" name="pu" id="pu" value="1004"/>
+                                            <label for="pu"><b>PU</b></label>
                                             <br>
-                                            <i class="fas fa-laptop fa-2x"></i>
+                                            <i class="far fa-money-bill-alt fa-2x"></i>
                                         </div>
                                     </div>
 

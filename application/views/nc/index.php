@@ -74,8 +74,10 @@ and open the template in the editor.
                             <?php 
                             if($trf_cp->cp_status == "Transfered To NC"){
                                 $change_status = "Transfrom Complaint";
+                                
                             }
-                            echo $change_status; 
+                            echo $change_status;
+                            
                             
                             ?>
                         </td>

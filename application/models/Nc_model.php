@@ -19,6 +19,7 @@ class Nc_model extends CI_Model{
         
         $data = array(
             "nc_id" => $this->input->post("nc_id"),
+            "nc_status" => $this->input->post("nc_status"),
             "nc_motive" => $this->input->post("nc_motive"),
             "nc_corrective" => $this->input->post("nc_corrective"),
             "nc_preventive" => $this->input->post("nc_preventive"),
@@ -38,11 +39,29 @@ class Nc_model extends CI_Model{
         
     }
     
+    
+    /*******GET ZONE************/
+    
     public function get_nc($cp_no){
         $query = $this->db->query("SELECT * FROM nc_main WHERE nc_id ='$cp_no' ");
         
         return $query->row_array();
     }
+    
+    public function get_nc2(){
+        $query = $this->db->query("SELECT * FROM nc_main");
+        
+        return $query->row_array();
+    }
+    
+    
+    public function get_rel_dept($cp_no){
+        $query = $this->db->query("SELECT complaint_related_department.cp_rt_dept_code, complaint_related_department.cp_rt_dept_id, complaint_related_department.cp_rt_dept_cp_no, complaint_related_department.cp_rt_dept_status, complaint_department_main.cp_dept_main_name FROM complaint_related_department INNER JOIN complaint_department_main ON complaint_department_main.cp_dept_main_code = complaint_related_department.cp_rt_dept_code WHERE cp_rt_dept_cp_no='$cp_no' ");
+        return $query->result();
+    }
+    /*******GET ZONE************/
+    
+    
     
     public function save_nc_follow1($cp_no){
         

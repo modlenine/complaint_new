@@ -27,7 +27,15 @@ and open the template in the editor.
                 <div class="form-cp-main">
                     <h1 style="text-align: center;width: 80%;">ใบรายงานปัญหา / ข้อบกพร่อง NC</h1><hr>
                     <div class="card border-info mb-3" style="max-width: 80%;">
-                        <div class="card-header">1. รายละเอียดปัญหา/ข้อบกพร่อง สำหรับผู้พบปัญหา</div>
+                        
+                        <?php  
+                            if($rs['cp_status'] == "Transfered To NC"){
+                                $nc_status = "Transfrom Complaint";
+                            }
+                        ?>
+                        
+                        <div class="card-header">1. รายละเอียดปัญหา/ข้อบกพร่อง สำหรับผู้พบปัญหา &nbsp;&nbsp;<span><b>NC Status : </b><?php echo $nc_status; ?></span></div>
+                        
                         <div class="card-body text-info">
                             <h5 class="card-title">เรียน ผู้จัดการฝ่าย xxx</h5><br>
                             <p class="card-text"><span><strong>Transfrom Complaint NO.</strong>&nbsp;<a href='http://192.190.10.27/complaint_new/complaint/investigation/<?php echo $rs['cp_no']; ?>'><?php echo $rs['cp_no']; ?></a></span></p>
@@ -53,11 +61,20 @@ and open the template in the editor.
                         <div class="card-header">2. สำหรับฝ่ายบริหาร (พิจารณาและกำหนดฝ่ายที่รับผิดชอบ แล้วส่งให้ MR. ดำเนินการ)</div>
                         <div class="card-body text-success">
                             <p class="card-text"><span><strong>ฝ่ายที่รับผิดชอบในการปฎิบัติการแก้ไขและป้องกันปัญหา ได้แก่ </strong>
-                                    <?php foreach ($get_rela_dept->result() as $grd): ?>
-                                        <span class="nc_color_font"><?php echo $grd->cp_dept_main_name; ?></span>
-                                    <?php endforeach; ?>   
+                                    <?php foreach ($get_rel_dept as $grd): ?>
+                                        <span class="nc_color_font res_dept"><?php echo $grd->cp_dept_main_name; ?></span>
+                                        <!--Check dept for permission-->
+                                        <?php if($getuser['Dept'] != $grd->cp_dept_main_name){
+                                            $checkPermis = 0 ;
+                                        }else{
+                                            $checkPermis = 1 ;
+                                        } 
+                                        ?>
+                                    <?php endforeach; ?> 
+                                        <input type="text" name="checkPermission" id="checkPermission" value="<?php echo $checkPermis; ?>" />
                                 </span></p>
-                            <p class="card-text"><span><strong>ลงชื่อฝ่ายบริหาร : </strong></span><span class="nc_color_font"><?php echo $rs['cp_sum_inves_signature']; ?></span><span>&nbsp;<strong>วันที่</strong>&nbsp;</span><span class="nc_color_font"><?php echo $rs['cp_sum_inves_date']; ?></span></p>
+                            <p class="card-text"><span><strong>ลงชื่อฝ่ายบริหาร : </strong></span><span class="nc_color_font qmr"><?php echo $rs['cp_sum_inves_signature']; ?></span><span>&nbsp;<strong>วันที่</strong>&nbsp;</span><span class="nc_color_font"><?php echo $rs['cp_sum_inves_date']; ?></span></p>
+                            <p><input hidden="" type="text" name="dept" id="dept" value="<?php echo $getuser['Dept']; ?>" /></p><!--Check dept for permission-->
                         </div>
                     </div>
 
@@ -66,9 +83,10 @@ and open the template in the editor.
                     <form name="zone3" action="<?php echo base_url(); ?>nc/save_nc_zone3/<?php echo $rs['cp_no']; ?>" method="post" enctype="multipart/form-data"> 
 
                         <input type="text" name="nc_id" id="nc_id" hidden="" value="<?php echo $rs['cp_no']; ?>"/>
+                        <input hidden="" type="text" name="nc_status" id="nc_status" value="<?php echo $nc_status; ?>" />
 
 
-                        <div class="card border-info mb-3" style="max-width: 80%;">
+                        <div class="card border-info mb-3 zone3" style="max-width: 80%;">
                             <div class="card-header">3. สำหรับฝ่ายที่รับผิดชอบให้หาสาเหตุ. วิธีแก้ไขและป้องกันและกำหนดแผนการปฎิบัติการแก้ไข</div>
                             <div class="card-body text-info">
 
@@ -157,7 +175,7 @@ and open the template in the editor.
 
                     </form>
 
-
+<!--  ***************************Zone 4********************************************* -->
                     <div class="card border-success mb-3 zone4" style="max-width: 80%;">
                         <div class="card-header">4. สำหรับฝ่ายที่เกี่ยวข้อง (เพื่อติดตามและปิดสรุป)</div>
                         <div class="card-body text-success">
@@ -279,6 +297,7 @@ and open the template in the editor.
 
                         </div><!-- Card body -->
                     </div><!-- Main Card -->
+  <!--  ***************************Zone 4********************************************* -->
 
                     <?php if($get_nc['nc_followup3_status'] == 1){
                         $weak = " ( Weak ! ) ";

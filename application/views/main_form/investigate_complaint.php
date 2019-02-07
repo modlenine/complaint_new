@@ -4,6 +4,13 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php
+    if($rs['cp_status']=="New Complaint"){
+        redirect('/complaint/viewcomplaint/'.$rs['cp_no']);
+        
+    }
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -21,9 +28,9 @@ and open the template in the editor.
                 <div class="col-md-10 ct-col10">
                         <div class="form-cp-main">
                             
-                            <h3 style="text-align: center;padding:10px ;background-color: #33CC00;">Investigation : <?php echo $rs['cp_no']; ?></h3>
-                            <div class="card border-light mb-3">
-                                <div class="card-header"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Basic Information</b></h4></div>
+                            <h3 style="text-align: center;padding:10px ;">Investigation : <?php echo $rs['cp_no']; ?></h3>
+                            <div class="card border-success mb-3">
+                                <div class="card-header bg_green"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Basic Information</b></h4></div>
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-3">
@@ -32,7 +39,11 @@ and open the template in the editor.
                                         </div>
                                         <div class="col-md-3">
                                             <label><b>Date :</b></label>
-                                            <label><?php echo date('d/m/Y'); ?></label>
+                                            <label><?php 
+                                            $cpdate = date_create($rs['cp_date']);
+                                            echo date_format($cpdate, "d-m-Y"); 
+                                            
+                                            ?></label>
                                         </div>
 
                                         <!-- Code สำหรับการ ตัดคำที่ดึงมา 2 Value และคั่นด้วย | -->                                   
@@ -64,11 +75,11 @@ and open the template in the editor.
                                         </div>
                                         <div class="col-md-3">
                                             <label><b>Employee ID :</b></label>
-                                            <label><?php echo $getuser['ecode']; ?></label>
+                                            <label><?php echo $rs['cp_user_empid']; ?></label>
                                         </div>
                                         <div class="col-md-3">
                                             <label><b>Department :</b></label>
-                                            <label><?php echo $getuser['Dept']; ?></label>
+                                            <label><?php echo $rs['cp_user_dept']; ?></label>
                                         </div>
                                         
                                         
@@ -79,11 +90,11 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div><br>
                             
                             
-                            <div class="card border-light mb-3">
-                                <div class="card-header"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Priority</b></h4></div>
+                            <div class="card border-success mb-3">
+                                <div class="card-header bg_green"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Priority</b></h4></div>
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-3">
@@ -126,11 +137,11 @@ and open the template in the editor.
                                     
                                     
                                 </div>
-                            </div>
+                            </div><br>
                             
 <!-- *******Details of Complaint*********************Details of Complaint*********************Details of Complaint************ -->
-                            <div class="card border-light mb-3">
-                                <div class="card-header"><h4><b><i class="far fa-id-card"></i>&nbsp;&nbsp;Details of Complaint / Damages</b></h4></div>
+                            <div class="card border-success mb-3">
+                                <div class="card-header bg_green"><h4><b><i class="far fa-id-card"></i>&nbsp;&nbsp;Details of Complaint / Damages</b></h4></div>
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-3" id="h_username">
@@ -165,16 +176,16 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                     <?php 
-                                            if($rs['cp_status']=="Investigating" || $rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint" || $rs['cp_status']=="Close Complaint" || $rs['cp_status']=="Transfered To NC"){
-                                                $detail_of_cp = ' readonly="" ';
-                                            }else{
-                                                $detail_of_cp = "";
-                                            }
+//                                            if($rs['cp_status']=="Complaint Analyzed" || $rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint" || $rs['cp_status']=="Close Complaint" || $rs['cp_status']=="Transfered To NC"){
+//                                                $detail_of_cp = ' readonly="" ';
+//                                            }else{
+//                                                $detail_of_cp = "";
+//                                            }
                                         ?>
                                     <div class="form-row">
                                         <div class="col-md-8 form-group">
                                             <label><b>Detail of complaint :</b></label>
-                                            <textarea <?php echo $detail_of_cp; ?> class="form-control" rows="3" name="detail_of_complaint" id="detail_of_compltint"><?php echo $rs['cp_detail']; ?></textarea>
+                                            <textarea readonly="" class="form-control" rows="3" name="detail_of_complaint" id="detail_of_compltint"><?php echo $rs['cp_detail']; ?></textarea>
                                         </div>
                                         <div class="col-md-6">
                                             <?php foreach ($get_upload_file as $guf): ?>
@@ -187,7 +198,7 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
-                            </div><hr>
+                            </div><br>
 
 
 <!-- *******Details of Complaint*********************Details of Complaint*********************Details of Complaint************ -->                                        
@@ -196,9 +207,9 @@ and open the template in the editor.
 
 <!-- ************ Investigation **************** Investigation ************** Investigation ******* -->
                             <form name="invesform" method="post" action="<?php echo base_url(); ?>complaint/add_detail_inves/<?php echo $rs['cp_no']; ?>">
-                            <div class="card border-light mb-3 Investigation">
-                                <div class="card-header"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Investigation</b></h4><br>
-                                    <label><b>The relevant departments.</b></label>
+                            <div class="card border-success mb-3 Investigation">
+                                <div class="card-header bg_green"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Investigation</b></h4><hr>
+                                    <label><b>Related Department.</b></label>
                                     <?php foreach ($get_dept_name as $gdn): ?>
                                     &nbsp;&nbsp;<label><?php echo $gdn['Dept']; ?></label>&nbsp;&nbsp;
                                     <?php endforeach; ?>
@@ -210,7 +221,7 @@ and open the template in the editor.
                                         <div class="col-md-8">
                                         <label><b>Detail of investigate</b></label>
                                         <?php 
-                                            if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint" || $rs['cp_status']=="Close Complaint" || $rs['cp_status']=="Transfered To NC"){
+                                            if($rs['cp_detail_inves']!=""){
                                                 $hh = ' readonly="" ';
                                             }else{
                                                 $hh = "";
@@ -223,7 +234,7 @@ and open the template in the editor.
                                         
                                         <div class="col-md-2">
                                             <?php  
-                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint" || $rs['cp_status']=="Close Complaint" || $rs['cp_status']=="Transfered To NC"){
+                                                if($rs['cp_detail_inves']!=""){
                                             ?>
                                             <label><b>Signature :</b></label>
                                             <label><?php echo $rs['cp_detail_inves_signature']; ?></label>
@@ -237,7 +248,7 @@ and open the template in the editor.
                                         
                                         <div class="col-md-2">
                                             <?php  
-                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint" || $rs['cp_status']=="Close Complaint" || $rs['cp_status']=="Transfered To NC"){
+                                                if($rs['cp_detail_inves']!=""){
                                             ?>
                                             <label><b>Department :</b></label>
                                             <label><?php echo $rs['cp_detail_inves_dept']; ?></label>
@@ -251,11 +262,14 @@ and open the template in the editor.
                                         
                                         <div class="col-md-2">
                                             <?php  
-                                                if($rs['cp_status']=="Investigated" || $rs['cp_status']=="Normal Complaint" || $rs['cp_status']=="Close Complaint" || $rs['cp_status']=="Transfered To NC"){
+                                                if($rs['cp_detail_inves']!=""){
                                             ?>
                                             <label><b>Date :</b></label>
-                                            <label><?php echo $rs['cp_detail_inves_date']; ?></label>
-                                            <input hidden="" type="text" name="cp_detail_inves_date" id="cp_detail_inves_date" value="<?php echo $rs['cp_detail_inves_date']; ?>" />
+                                            <label><?php 
+                                            $detail_inv = date_create($rs['cp_detail_inves_date']);
+                                            echo date_format($detail_inv, "d-m-Y"); 
+                                            ?></label>
+                                            <input hidden="" type="text" name="cp_detail_inves_date" id="cp_detail_inves_date" value="<?php echo date_format($detail_inv, "d-m-Y"); ?>" />
                                             <?php }else{ ?>
                                             <label><b>Date :</b></label>
                                             <label><?php echo date('d/m/Y'); ?></label>
@@ -265,20 +279,30 @@ and open the template in the editor.
                                     </div><hr>
                                     
                                     <!-- Check permission for show or hide start investigate button -->
-                                    <?php if($rs['cp_status']=="Investigating" && $getuser['username'] != $rs['cp_user_name'] ){ ?>
+                                    
+                                    <?php 
+                                        foreach ($get_dept_name as $cDept){
+                                            $ccDept = $cDept['Dept'];
+                                        
+                                    
+                                    if($rs['cp_detail_inves']=="" && $getuser['Dept'] == $ccDept ){ ?>
+                                    
                                     <div class="col-md-4"><input type="submit" name="save" id="save" value="Submit" class="btn btn-primary btn-block"/></div>
-                                    <?php }else{} ?>
+                                    <?php }else{
+                                        
+                                    } 
+                                        }?>
                                 </div>
-                            </div>
+                            </div><br>
                                 </form>
 <!-- *********Investigation******************Investigation****************Investigation*************** -->
 
 
 <!-- ********Summary of Investigation***************Summary of Investigation************************Summary of Investigation********* -->
                             <form name="invesform" method="post" action="<?php echo base_url(); ?>complaint/add_sum_of_inves/<?php echo $rs['cp_no']; ?>">
-                            <div class="card border-light mb-3 Summary">
-                                <div class="card-header"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Summary of Investigation</b></h4><br>
-                                <label><b>The relevant departments. QMR</b></label>
+                            <div class="card border-success mb-3 Summary">
+                                <div class="card-header bg_green"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Summary of Investigation</b></h4><hr>
+                                <label><b>For QMR Only.</b></label>
                                 </div>
                                 <div class="card-body">
                                     
@@ -454,12 +478,13 @@ and open the template in the editor.
                                             <i class="fas fa-laptop fa-2x"></i>
                                         </div>
                                         <div class="col-md-2 new_center_text">
-                                            <input type="checkbox" name="qmr_sum" id="qmr_sum" value="1099"/>
-                                            <label for="it"><b>QMR</b></label>
+                                            <input type="checkbox" name="pu_sum" id="pu_sum" value="1007"/>
+                                            <label for="pd"><b>PU</b></label>
                                             <br>
-                                            <i class="fas fa-laptop fa-2x"></i>
+                                            <i class="far fa-money-bill-alt fa-2x"></i>
                                         </div>
                                     </div>
+                                    
 
                                 </div>
                             </div><hr>
@@ -476,16 +501,16 @@ and open the template in the editor.
                                     
                                         <?php } ?>
                                 </div>
-                            </div>
+                            </div><br>
                                 </form>
 <!-- ******Summary of Investigation************************Summary of Investigation**********************Summary of Investigation*********** -->
 
 
 <!-- ************ Conclusion of complaint **************** Conclusion of complaint ************** Conclusion of complaint ******* -->
                             <form name="invesform" method="post" action="<?php echo base_url(); ?>complaint/add_conclusion/<?php echo $rs['cp_no']; ?>">
-                            <div class="card border-light mb-3 Conclusion">
-                                <div class="card-header"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Conclusion of Complaint</b></h4><br>
-                                    <label><b>The relevant departments. QMR</b></label><br>
+                            <div class="card border-info mb-3 Conclusion">
+                                <div class="card-header bg_green"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Conclusion of Complaint</b></h4><hr>
+                                    <label><b>For QMR Only</b></label><br>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-row">

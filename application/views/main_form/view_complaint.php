@@ -27,10 +27,10 @@ and open the template in the editor.
 
 
                         <div class="form-cp-main">
-                            <h3 style="text-align: center;padding:10px ;background-color: #66CCFF;">View Complaint Form : <?php echo $rs['cp_no']; ?></h3>
+                            <h3 style="text-align: center;padding:10px ;">View Complaint Form : <?php echo $rs['cp_no']; ?></h3>
 
-                            <div class="card border-light mb-3">
-                                <div class="card-header"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Basic Information</b></h4></div>
+                            <div class="card border-info mb-3">
+                                <div class="card-header bg_blue"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Basic Information</b></h4></div>
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-3">
@@ -83,11 +83,11 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div><br>
                             
                             
-                            <div class="card border-light mb-3">
-                                <div class="card-header"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Priority</b></h4></div>
+                            <div class="card border-info mb-3">
+                                <div class="card-header bg_blue"><h4><b><i class="fas fa-flag"></i>&nbsp;&nbsp;Priority</b></h4></div>
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-3">
@@ -130,7 +130,7 @@ and open the template in the editor.
                                     
                                     
                                 </div>
-                            </div>
+                            </div><br>
                             
                             <script>
                                             $(document).ready(function () {
@@ -156,8 +156,8 @@ and open the template in the editor.
                                             });
                                         </script>
 
-                            <div class="card border-light mb-3">
-                                <div class="card-header"><h4><b><i class="far fa-id-card"></i>&nbsp;&nbsp;Details of Complaint / Damages</b></h4></div>
+                            <div class="card border-info mb-3">
+                                <div class="card-header bg_blue"><h4><b><i class="far fa-id-card"></i>&nbsp;&nbsp;Details of Complaint / Damages</b></h4></div>
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="col-md-3" id="h_username">
@@ -210,26 +210,24 @@ and open the template in the editor.
                                             <?php endforeach; ?>
                                         </div>
                                         <div class="col-md-3">
-
+                                            <label><b>Related Department.</b></label>
+                                    <?php foreach ($get_dept_name as $gdn): ?>
+                                    &nbsp;&nbsp;<label><?php echo $gdn['Dept']; ?></label>&nbsp;&nbsp;
+                                    <?php endforeach; ?>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div><hr>
                             
                             <!-- Check permission for show or hide start investigate button -->
                             <?php 
-                            foreach ($check_dept as $cc):
-                                $cc['cp_dept_code'];
                             
-                            if($getuser['DeptCode'] == $cc['cp_dept_code'] && $getuser['username'] != $rs['cp_user_name'] ) { ?>
+                            if($getuser['DeptCode'] == $check_dept['cp_dept_code'] && $getuser['username'] != $rs['cp_user_name'] ) { ?>
                             <div><a href="<?php echo base_url(); ?>complaint/inves_starting/<?php echo $rs['cp_no']; ?>"><button onclick="javascript:return confirm('คุณต้องการเริ่มการสืบสวนใช่หรือไม่');" class="btn btn-primary">Start Investigate</button></a></div>
                             
                             <?php
-                            }else{
-
-                            }
-                        endforeach;
-                             ?>
+                            }else{}?>
                              <!-- Check permission for show or hide start investigate button -->
                             <hr>
                             
@@ -245,7 +243,7 @@ and open the template in the editor.
 
 
 
-                        </div>
+                        </div><br>
 
                 </div><!-- END Section Main area  -->
 

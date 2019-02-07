@@ -63,18 +63,38 @@ and open the template in the editor.
                 <?php foreach ($getdataall->result() as $gda): ?>
                     <tr align="center">
                         <td ><strong><a href="<?php 
-                        if($gda->cp_status == "Investigating" || $gda->cp_status == "Investigated" || $gda->cp_status == "Normal Complaint" || $gda->cp_status == "Close Complaint" || $gda->cp_status == "Transfered To NC"){
+                        if($gda->cp_status == "Complaint Analyzed" || $gda->cp_status == "Investigated" || $gda->cp_status == "Normal Complaint" || $gda->cp_status == "Close Complaint" || $gda->cp_status == "Transfered To NC"){
                             echo base_url(); ?>complaint/investigation/<?php echo $gda->cp_no;
                         }else{
                             echo base_url(); ?>complaint/viewcomplaint/<?php echo $gda->cp_no;
                         }
                          
                         ?>"><?php echo $gda->cp_no; ?></a></strong></td>
-                        <td ><?php echo $gda->cp_date; ?></td>
+                        <td ><?php 
+                        $date = date_create($gda->cp_date);
+                        echo date_format($date,"d-m-Y") ; 
+                        
+                        ?></td>
                         <td ><?php echo $gda->cp_user_name; ?></td>
                         <td ><?php echo $gda->cp_topic; ?></td>
                         <td ><?php echo $gda->cp_cus_name; ?></td>
-                        <td ><?php echo $gda->cp_status; ?></td>
+                        <td ><?php
+                        if($gda->cp_status == "New Complaint"){
+                            echo "<span class='badge badge-primary'>".$gda->cp_status."</span>";
+                        }else if ($gda->cp_status == "Complaint Analyzed"){
+                            echo "<span class='badge badge-warning'>".$gda->cp_status."</span>";
+                        }else if($gda->cp_status == "Normal Complaint"){
+                            echo "<span class='badge badge-secondary'>".$gda->cp_status."</span>";
+                        }else if($gda->cp_status == "Close Complaint"){
+                            echo "<span class='badge badge-success'>".$gda->cp_status."</span>";
+                        }else if($gda->cp_status == "Investigation Complete"){
+                            echo "<span class='badge badge-info'>".$gda->cp_status."</span>";
+                        }else if($gda->cp_status == "Transfered To NC"){
+                            echo "<span class='badge badge-danger'>".$gda->cp_status."</span>";
+                        }
+                         
+                        
+                        ?></td>
                         <td>
                             <?php 
                                 if($gda->cp_priority >= 4.00 ){//4.10 -5.00

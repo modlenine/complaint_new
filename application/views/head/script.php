@@ -51,14 +51,14 @@
 
 /***************************Status check********************************************/
         var value2 = $("#status_check").val();
-        if (value2 == "Investigating") {
+        if (value2 == "Complaint Analyzed") {
 
             $('.Summary').hide();
             $('.Conclusion').hide();
 
 
         }
-        if (value2 == "Investigated") {
+        if (value2 == "Investigation Complete") {
             $('#save').hide();
             $('.Conclusion').hide();
 
@@ -81,7 +81,7 @@
         
     });
     
-    if($('#status_check').val()=="Transfered To NC"){
+    if($('#status_check').val()=="Transfered To NC" || $('#status_check').val()=="Normal Complaint" || $('#status_check').val()=="Close Complaint"){
         $('.transfer').hide();
     }
 /**************************Show & Hide***Related Department**********************/
@@ -89,17 +89,128 @@
 
 
 /**************************NC *************************************/
-var check_zone3 = $('#nc_motive').val();
-if(check_zone3 != ""){
-    $('.btn3').hide();
-}else{
-    $('.zone4').hide();
-    $('.nc_conclusion').hide();
+var checkPermission = $('#checkPermission').val();
+if(checkPermission == 0){
+    $("#nc_motive").prop("readonly",true);
+    $("#nc_corrective").prop("readonly",true);
+    $("#nc_preventive").prop("readonly",true);
+    $("#nc_corrective_date").prop("readonly",true);
+    $("#nc_preventive_date").prop("readonly",true);
+    $('#btn3').hide();
+    $("#followup1_text").prop("readonly",true);
+    $("#followup2_text").prop("readonly",true);
+    $("#followup3_text").prop("readonly",true);
+    $("#followup1_date").prop("readonly",true);
+    $("#followup2_date").prop("readonly",true);
+    $("#file_follow1").prop("readonly",true);
+    $("#file_follow2").prop("readonly",true);
+    $("#btn-follow1").hide();
+    $("#btn-follow2").hide();
+    $("#btn-follow3").hide();
 }
 
-
-
 /**************************NC **************************************/
+
+
+
+/********Check Department radio*************/
+var deptcode = $("#deptcode").val();
+$("#lab").click(function (){
+    if(deptcode == $("#lab").val()){
+        alert("ไม่สามารถ Complaint แผนกตัวเองได้");
+        $("#lab").remove();
+    }
+});
+
+$("#admin").click(function (){
+   if(deptcode == $("#admin").val()){
+       alert("ไม่สามารถ Complaint แผนกตัวเองได้");
+       $("#admin").remove();
+   } 
+});
+
+$("#hr").click(function (){
+   if(deptcode == $("#hr").val()){
+       alert("ไม่สามารถ Complaint แผนกตัวเองได้");
+       $("#hr").remove();
+   } 
+});
+
+$("#account").click(function (){
+   if(deptcode == $("#account").val()){
+       alert("ไม่สามารถ Complaint แผนกตัวเองได้");
+       $("#account").remove();
+   } 
+});
+
+$("#qc").click(function (){
+   if(deptcode == $("#qc").val()){
+       alert("ไม่สามารถ Complaint แผนกตัวเองได้");
+       $("#qc").remove();
+   } 
+});
+
+$("#maintenance").click(function (){
+   if(deptcode == $("#maintenance").val()){
+       alert("ไม่สามารถ Complaint แผนกตัวเองได้");
+       $("#maintenance").remove();
+   } 
+});
+
+$("#pd").click(function (){
+   if(deptcode == $("#pd").val()){
+       alert("ไม่สามารถ Complaint แผนกตัวเองได้");
+       $("#pd").remove();
+   } 
+});
+
+$("#sales").click(function (){
+   if(deptcode == $("#sales").val()){
+       alert("ไม่สามารถ Complaint แผนกตัวเองได้");
+       $("#sales").remove();
+   } 
+});
+
+$("#warehouse").click(function (){
+   if(deptcode == $("#warehouse").val()){
+       alert("ไม่สามารถ Complaint แผนกตัวเองได้");
+       $("#warehouse").remove();
+   } 
+});
+
+$("#planning").click(function (){
+   if(deptcode == $("#planning").val()){
+       alert("ไม่สามารถ Complaint แผนกตัวเองได้");
+       $("#planning").remove();
+   } 
+});
+
+$("#it").click(function (){
+   if(deptcode == $("#it").val()){
+       alert("ไม่สามารถ Complaint แผนกตัวเองได้");
+       $("#it").remove();
+   } 
+});
+
+
+$("#pu").click(function (){
+   if(deptcode == $("#pu").val()){
+       alert("ไม่สามารถ Complaint แผนกตัวเองได้");
+       $("#pu").remove();
+   } 
+});
+
+
+/********Check Department radio*************/
+
+
+
+
+/********************Check************************/
+var resultCheck = $('#resultCheck').val();
+if(resultCheck == false){
+    $('#save').hide();
+}
 
 
 

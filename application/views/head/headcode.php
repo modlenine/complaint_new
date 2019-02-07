@@ -24,6 +24,14 @@ and open the template in the editor.
         
         <style>
             /*------------- Main site code-------------------------*/
+            .bg_blue{
+                background-color:#66CCFF;
+            }
+            .bg_green{
+                background-color:#3e9e1d;
+                color:whitesmoke;
+            }
+            
             .nc_color_font{
                 color:#444;
             }

@@ -56,6 +56,7 @@
         $data['get_cp_priority1'] = $this->complaint_model->getPriority("select * from complaint_priority where cp_pri_group = 1");
         $data['check_dept'] = $this->complaint_model->checkdept("select * from complaint_department where cp_dept_cp_no = '$cp_no' ");
         $data['get_upload_file'] = $this->complaint_model->get_file_upload("select * from complaint_file_upload where file_cp_no ='$cp_no' ");
+        $data['get_dept_name'] = $this->complaint_model->get_dept_name("SELECT complaint_department.cp_dept_id, complaint_department.cp_dept_code, complaint_department.cp_dept_cp_no, member.Dept FROM complaint_department INNER JOIN member ON member.DeptCode = complaint_department.cp_dept_code WHERE complaint_department.cp_dept_cp_no = '$cp_no' GROUP BY complaint_department.cp_dept_code DESC");
             
             
             $this->load->view("head/headcode");
