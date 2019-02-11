@@ -49,7 +49,7 @@ and open the template in the editor.
                                         <!-- Code สำหรับการ ตัดคำที่ดึงมา 2 Value และคั่นด้วย | -->   
                                         <div class="col-md-3">
                                             <label><b>Topic</b></label>
-                                            <select name="cp_topic" id="cp_topic" class="form-control form-control-sm" OnChange="resutName(this.value);">
+                                            <select name="cp_topic" id="cp_topic" class="form-control form-control-sm" OnChange="resutName(this.value);" required="">
                                                 <option selected="">Please choose topic</option>
                                                 <?php foreach ($topic->result_array() as $t): ?>
                                                     <option value="<?php echo $t['topic_name']; ?>|<?php echo $t['topic_cat_name']; ?>"><?php echo $t['topic_name']; ?></option>
@@ -91,7 +91,7 @@ and open the template in the editor.
                                             </script>
                                         
                                             <label ><b>Customer Satisfaction</b></label>
-                                            <select class="form-control form-control-sm" name="pri1" id="pri1" OnChange="resutName1(this.value);">
+                                            <select class="form-control form-control-sm" name="pri1" id="pri1" OnChange="resutName1(this.value);" required="">
                                                 <option>Please choose value</option>
                                                 <?php foreach ($get_cp_priority1->result_array() as $g1):?>
                                                 <option value="<?php echo $g1['cp_pri_score']; ?>|<?php echo $g1['cp_pri_group']; ?>|<?php echo $g1['cp_pri_name']; ?>"><?php echo $g1['cp_pri_name']; ?></option>
@@ -113,7 +113,7 @@ and open the template in the editor.
                                             </script>
                                             
                                             <label><b>Production Loss</b></label>
-                                            <select class="form-control form-control-sm" name="pri2" id="pri2" OnChange="resutName2(this.value);">
+                                            <select class="form-control form-control-sm" name="pri2" id="pri2" OnChange="resutName2(this.value);" required="">
                                                 <option>Please choose value</option>
                                                 <?php foreach ($get_cp_priority2->result_array() as $g2): ?>
                                                 <option value="<?php echo $g2['cp_pri_score']; ?>|<?php echo $g2['cp_pri_group']; ?>|<?php echo $g2['cp_pri_name']; ?>"><?php echo $g2['cp_pri_name']; ?></option>
@@ -135,7 +135,7 @@ and open the template in the editor.
                                             </script>
                                             
                                             <label><b>Business Disruption</b></label>
-                                            <select class="form-control form-control-sm" name="pri3" id="pri3" OnChange="resutName3(this.value);">
+                                            <select class="form-control form-control-sm" name="pri3" id="pri3" OnChange="resutName3(this.value);" required="">
                                                 <option>Please choose value</option>
                                                 <?php foreach ($get_cp_priority3->result_array() as $g3): ?>
                                                 <option value="<?php echo $g3['cp_pri_score']; ?>|<?php echo $g3['cp_pri_group']; ?>|<?php echo $g3['cp_pri_name']; ?>"><?php echo $g3['cp_pri_name']; ?></option>
@@ -157,7 +157,7 @@ and open the template in the editor.
                                             </script>
                                             
                                             <label><b>Machinery performance</b></label>
-                                            <select class="form-control form-control-sm" name="pri4" id="pri4" OnChange="resutName4(this.value);">
+                                            <select class="form-control form-control-sm" name="pri4" id="pri4" OnChange="resutName4(this.value);" required="">
                                                 <option>Please choose value</option>
                                                 <?php foreach ($get_cp_priority4->result_array() as $g4): ?>
                                                 <option value="<?php echo $g4['cp_pri_score']; ?>|<?php echo $g4['cp_pri_group']; ?>|<?php echo $g4['cp_pri_name']; ?>"><?php echo $g4['cp_pri_name']; ?></option>
@@ -181,7 +181,7 @@ and open the template in the editor.
                                             </script>
                                             
                                             <label><b>The image of enterprise</b></label>
-                                            <select class="form-control form-control-sm" name="pri5" id="pri5" OnChange="resutName5(this.value);">
+                                            <select class="form-control form-control-sm" name="pri5" id="pri5" OnChange="resutName5(this.value);" required="">
                                                 <option>Please choose value</option>
                                                 <?php foreach($get_cp_priority5->result_array() as $g5): ?>
                                                 <option value="<?php echo $g5['cp_pri_score']; ?>|<?php echo $g5['cp_pri_group']; ?>|<?php echo $g5['cp_pri_name']; ?>"><?php echo $g5['cp_pri_name']; ?></option>
@@ -203,7 +203,7 @@ and open the template in the editor.
                                             </script>
                                             
                                             <label><b>Complaints</b></label>
-                                            <select class="form-control form-control-sm" name="pri6" id="pri6" OnChange="resutName6(this.value);">
+                                            <select class="form-control form-control-sm" name="pri6" id="pri6" OnChange="resutName6(this.value);" required="">
                                                 <option>Please choose value</option>
                                                 <?php foreach($get_cp_priority6->result_array() as $g6): ?>
                                                 <option value="<?php echo $g6['cp_pri_score']; ?>|<?php echo $g6['cp_pri_group']; ?>|<?php echo $g6['cp_pri_name']; ?>"><?php echo $g6['cp_pri_name']; ?></option>
@@ -225,7 +225,7 @@ and open the template in the editor.
                                             </script>
                                             
                                             <label><b>Impact on personal</b></label>
-                                            <select class="form-control form-control-sm" name="pri7" id="pri7" OnChange="resutName7(this.value);">
+                                            <select class="form-control form-control-sm" name="pri7" id="pri7" OnChange="resutName7(this.value);" required="">
                                                 <option>Please choose value</option>
                                                 <?php foreach($get_cp_priority7->result_array() as $g7): ?>
                                                 <option value="<?php echo $g7['cp_pri_score']; ?>|<?php echo $g7['cp_pri_group']; ?>|<?php echo $g7['cp_pri_name']; ?>"><?php echo $g7['cp_pri_name']; ?></option>
@@ -294,17 +294,17 @@ and open the template in the editor.
                                     <div class="form-row">
                                         <div class="col-md-3" id="h_username">
                                             <a href="#"><i class="fas fa-plus-circle iconcolor"></i></a>&nbsp;<label><b>Customer Name</b></label>
-                                            <input type="text" name="cp_cus_name" id="cp_cus_name" class="form-control form-control-sm form-width"  placeholder="Customer Name" />
+                                            <input type="text" name="cp_cus_name" id="cp_cus_name" class="form-control form-control-sm form-width"  placeholder="Customer Name" required=""/>
                                         </div>
 
                                         <div class="col-md-3" id="h_cusref">
                                             <label><b>Customer Ref.</b></label>
-                                            <input type="text" name="cp_cus_ref" id="cp_cus_ref" class="form-control form-control-sm form-width"  placeholder="Customer Ref."/>
+                                            <input type="text" name="cp_cus_ref" id="cp_cus_ref" class="form-control form-control-sm form-width"  placeholder="Customer Ref." required=""/>
                                         </div>
 
                                         <div class="col-md-3" id="h_inv">
                                             <label><b>Invoice Number</b></label>
-                                            <input type="text" name="cp_invoice_no" id="cp_invoice_no" class="form-control form-control-sm form-width"  placeholder="Invoice Number"/>
+                                            <input type="text" name="cp_invoice_no" id="cp_invoice_no" class="form-control form-control-sm form-width"  placeholder="Invoice Number" required=""/>
                                         </div>
                                     </div><br>
                                     <div class="form-row">
@@ -325,7 +325,7 @@ and open the template in the editor.
                                     </div><br>
                                     <div class="form-row">
                                         <div class="col-md-12 form-group">
-                                            <textarea name="cp_detail" class="form-control form-control-sm" type="textarea" id="message" placeholder="Message" maxlength="2000" rows="7"></textarea>
+                                            <textarea name="cp_detail" class="form-control form-control-sm" type="textarea" id="message" placeholder="Message" maxlength="2000" rows="7" required=""></textarea>
                                             <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>                    
                                         </div>
                                         <script>

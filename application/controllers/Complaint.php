@@ -60,6 +60,7 @@
             
             
             $this->load->view("head/headcode");
+            $this->load->view("head/script");
             $this->load->view("main_form/view_complaint",$data);
         }
         

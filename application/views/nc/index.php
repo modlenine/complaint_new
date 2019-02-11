@@ -70,17 +70,7 @@ and open the template in the editor.
                         <td ><?php echo $trf_cp->cp_user_name; ?></td>
                         <td ><?php echo $trf_cp->cp_topic; ?></td>
                         <td ><?php echo $trf_cp->cp_cus_name; ?></td>
-                        <td >
-                            <?php 
-                            if($trf_cp->cp_status == "Transfered To NC"){
-                                $change_status = "Transfrom Complaint";
-                                
-                            }
-                            echo $change_status;
-                            
-                            
-                            ?>
-                        </td>
+                        <td ><?php echo $trf_cp->nc_status;?></td>
                         <td>
                             <?php 
                                 if($trf_cp->cp_priority >= 4.00 ){//4.10 -5.00

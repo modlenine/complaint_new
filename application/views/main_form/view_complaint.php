@@ -213,6 +213,7 @@ and open the template in the editor.
                                             <label><b>Related Department.</b></label>
                                     <?php foreach ($get_dept_name as $gdn): ?>
                                     &nbsp;&nbsp;<label><?php echo $gdn['Dept']; ?></label>&nbsp;&nbsp;
+                                    
                                     <?php endforeach; ?>
                                         </div>
                                         
@@ -222,12 +223,19 @@ and open the template in the editor.
                             
                             <!-- Check permission for show or hide start investigate button -->
                             <?php 
+                            $ckd_result = 0;
+                        foreach ($check_dept as $ckd){
+                            if($ckd['cp_dept_code'] !== $getuser['DeptCode']){
+                                continue;
+                            }
+                            $ckd_result =1 ;
+                        }
+                            ?>
                             
-                            if($getuser['DeptCode'] == $check_dept['cp_dept_code'] && $getuser['username'] != $rs['cp_user_name'] ) { ?>
-                            <div><a href="<?php echo base_url(); ?>complaint/inves_starting/<?php echo $rs['cp_no']; ?>"><button onclick="javascript:return confirm('คุณต้องการเริ่มการสืบสวนใช่หรือไม่');" class="btn btn-primary">Start Investigate</button></a></div>
+                            <input hidden="" type="text" name="check_dept_view" id="check_dept_view" value="<?php echo $ckd_result;?>" />
                             
-                            <?php
-                            }else{}?>
+                            <div><a href="<?php echo base_url(); ?>complaint/inves_starting/<?php echo $rs['cp_no']; ?>"><button name="btn_v_cp" id="btn_v_cp" onclick="javascript:return confirm('คุณต้องการเริ่มการสืบสวนใช่หรือไม่');" class="btn btn-primary">Start Investigation</button></a></div>
+                            
                              <!-- Check permission for show or hide start investigate button -->
                             <hr>
                             

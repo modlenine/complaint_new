@@ -15,6 +15,7 @@
             $data['transfrom_cp'] = $this->nc_model->transfrom_complaint();
             $data['get_nc2'] = $this->nc_model->get_nc2();
             
+            
             $this->load->view("head/headcode");
             $this->load->view("head/script");
             $this->load->view("nc/index",$data);
@@ -22,6 +23,8 @@
         
         public function add_nc($cp_no){
             $this->login_model->callLogin();
+            $this->nc_model->update_status1($cp_no);
+            
             $data['getuser'] = $this->login_model->getuser();
             $data['rs'] = $this->complaint_model->edit_complaint($cp_no);
             $data['transfrom_cp'] = $this->nc_model->transfrom_complaint();
@@ -29,6 +32,7 @@
             $data['get_rela_dept'] = $this->nc_model->get_related_dept($cp_no);
             $data['get_nc'] = $this->nc_model->get_nc($cp_no);
             $data['get_rel_dept'] = $this->nc_model->get_rel_dept($cp_no);
+            $data['nc_check_dept'] = $this->nc_model->nc_check_dept($cp_no);
             
             
             $this->load->view("head/headcode");
@@ -37,7 +41,7 @@
         }
         
         public function save_nc_zone3($cp_no){
-            $this->nc_model->save_nc_zone3();
+            $this->nc_model->save_nc_zone3($cp_no);
             
             
             redirect('/nc/add_nc/'.$cp_no);

@@ -53,7 +53,7 @@ public function getStatus($sql){
 public function checkdept($sql){
     $c_dept = $this->queryData($sql);
     
-    return $c_dept->row_array();
+    return $c_dept->result_array();
 }
 
 public function get_file_upload($sql){
@@ -609,6 +609,8 @@ public function get_dept_name($sql){
         
          
     }
+    
+    
     /***********Send Email for update status*******************/
         public function emailChangeStat2($cp_no){
             $result = $this->db->query("SELECT * FROM complaint_main WHERE cp_no='$cp_no' ");
@@ -648,9 +650,13 @@ public function get_dept_name($sql){
             }
         }
         }
+        
+        
     /***********Send Email for update status*******************/
     /** Insert Detail of investigate **/
     
+        
+        
     
     /** Insert Summary of investigate **/
     public function saveSuminves($cp_no){
@@ -665,6 +671,7 @@ public function get_dept_name($sql){
         }
         if($cp_sum == "yes"){
             $this->db->query("UPDATE complaint_main SET cp_status='Transfered To NC' WHERE cp_no='$cp_no' ");
+            $this->db->query("UPDATE complaint_main SET nc_status='Transfrom Complaint' WHERE cp_no='$cp_no' ");
         }
         
         $result = $this->db->query("UPDATE complaint_main SET cp_sum_inves='$cp_sum_inves_detail' , cp_sum_inves_signature='$cp_sum_inves_signature' , cp_sum_inves_dept='$cp_sum_inves_dept' , cp_sum_inves_date=CURDATE() , cp_sum='$cp_sum' WHERE cp_no='$cp_no' ");
@@ -790,8 +797,7 @@ public function get_dept_name($sql){
             $this->db->insert("complaint_related_department",$dept_code12);
         }else{}
         /*  Insert department to department table  */
-        
-        
+         
     }
     
     
@@ -799,19 +805,20 @@ public function get_dept_name($sql){
 
 /***********Send Email Change Status********************** */
     public function emailChangeStat3($cp_no){
-        $deptEmail = $this->db->query("SELECT * FROM complaint_department WHERE cp_dept_cp_no='$cp_no' ");
+            $result = $this->db->query("SELECT * FROM complaint_main WHERE cp_no='$cp_no' ");
+        $results = $result->row_array();
+            
+            $deptEmail = $this->db->query("SELECT * FROM complaint_department WHERE cp_dept_cp_no='$cp_no' ");
         foreach ($deptEmail->result_array() as $deptEm){
             $resultDeptEm = $deptEm['cp_dept_code']; 
             
             $getEmail = $this->db->query("SELECT * FROM maillist WHERE deptcode='$resultDeptEm' ");
             
-            $check_status = $this->db->query("SELECT cp_status FROM complaint_main WHERE cp_no='$cp_no' ");
-            if($check_status=="Transfer To NC"){
-                foreach ($getEmail->result_array() as $gemail){
+            foreach ($getEmail->result_array() as $gemail){
                $email = $gemail['email'];
                 
-                $subject = "Transfer To NC";
-            $body = "<h2>The Complaint is transfer to nc.</h2>";
+                $subject = "Summary of complaint completed";
+            $body = "<h2>Summary of complaint completed</h2>";
             $body .= "<strong>Complaint No. : </strong>" . $cp_no . "<br>";
             $body .= "<strong>CP Status. : </strong>" . $results['cp_status']. "<br>";
       
@@ -833,10 +840,8 @@ public function get_dept_name($sql){
             }
             
             }
-            }
-            
         }
-    }
+        }
 /***********Send Email Change Status********************** */
     /** Insert Summary of investigate **/
   

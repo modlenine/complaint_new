@@ -89,25 +89,26 @@
 
 
 /**************************NC *************************************/
-var checkPermission = $('#checkPermission').val();
-if(checkPermission == 0){
-    $("#nc_motive").prop("readonly",true);
-    $("#nc_corrective").prop("readonly",true);
-    $("#nc_preventive").prop("readonly",true);
-    $("#nc_corrective_date").prop("readonly",true);
-    $("#nc_preventive_date").prop("readonly",true);
-    $('#btn3').hide();
-    $("#followup1_text").prop("readonly",true);
-    $("#followup2_text").prop("readonly",true);
-    $("#followup3_text").prop("readonly",true);
-    $("#followup1_date").prop("readonly",true);
-    $("#followup2_date").prop("readonly",true);
-    $("#file_follow1").prop("readonly",true);
-    $("#file_follow2").prop("readonly",true);
-    $("#btn-follow1").hide();
-    $("#btn-follow2").hide();
-    $("#btn-follow3").hide();
-}
+//var checkPermission = $('#checkPermission').val();
+//if(checkPermission == 0){
+//    $("#nc_motive").prop("readonly",true);
+//    $("#nc_corrective").prop("readonly",true);
+//    $("#nc_preventive").prop("readonly",true);
+//    $("#nc_corrective_date").prop("readonly",true);
+//    $("#nc_preventive_date").prop("readonly",true);
+//    $('#btn3').hide();
+//    
+//    $("#followup1_text").prop("readonly",true);
+//    $("#followup2_text").prop("readonly",true);
+//    $("#followup3_text").prop("readonly",true);
+//    $("#followup1_date").prop("readonly",true);
+//    $("#followup2_date").prop("readonly",true);
+//    $("#file_follow1").prop("readonly",true);
+//    $("#file_follow2").prop("readonly",true);
+//    $("#btn-follow1").hide();
+//    $("#btn-follow2").hide();
+//    $("#btn-follow3").hide();
+//}
 
 /**************************NC **************************************/
 
@@ -211,6 +212,77 @@ var resultCheck = $('#resultCheck').val();
 if(resultCheck == false){
     $('#save').hide();
 }
+/********************Check************************/
+
+
+
+/***********NC++ Readonly Zone 3******************/
+
+var nc_zone3_read = $('#dept_check').val();
+if(nc_zone3_read == 0){
+    $("#nc_motive").prop("readonly",true);
+    $("#nc_corrective").prop("readonly",true);
+    $("#nc_corrective_date").prop("readonly",true);
+    $("#nc_preventive").prop("readonly",true);
+    $("#nc_preventive_date").prop("readonly",true);
+    $("#btn3").hide();  
+}
+
+if($("#nc_preventive").val()!== ""){
+    $("#btn3").hide();
+}
+
+/***********NC++ Readonly Zone 3******************/
+
+
+
+/***********NC++ Readonly Zone 4******************/
+/**Check Dept***/
+var zone4_permission = $("#deptcodename").val();
+if(zone4_permission !== "QMR"){
+    /**Followup1**/
+    $("#followup1_text").prop("readonly",true);
+    $("#file_follow1").prop("readonly",true);
+    $("#btn-follow1").hide();
+    $("#followup1_date").prop("readonly",true);
+    
+    /****Followup2*****/
+    $("#followup2_text").prop("readonly",true);
+    $("#file_follow2").prop("readonly",true);
+    $("#btn-follow2").hide();
+    $("#followup2_date").prop("readonly",true);
+    
+    /***Followup3*****/
+    $("#followup3_text").prop("readonly",true);
+    $("#file_follow3").prop("readonly",true);
+    $("#btn-follow3").hide();
+    
+    /*****Conclusion of NC******/
+    $("#nc_conclusion").prop("readonly",true);
+    $("#btn-con-nc").hide();
+    
+}
+/**Check Dept***/
+
+
+var nc_pre = $('#nc_preventive').val();
+if(nc_pre == ""){
+    $('#followup1_text').prop("readonly",true);
+    $("#btn-follow1").hide();
+}
+/***********NC++ Readonly Zone 4******************/
+
+
+
+/******************Check dept view complaint******************/
+var chk_dept_cpv = $("#check_dept_view").val();
+if(chk_dept_cpv == 0){
+    $("#btn_v_cp").hide();
+}
+/******************Check dept view complaint******************/
+
+
+
 
 
 

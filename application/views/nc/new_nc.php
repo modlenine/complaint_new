@@ -26,6 +26,7 @@ and open the template in the editor.
 
                 <div class="form-cp-main">
                     <h1 style="text-align: center;width: 80%;">ใบรายงานปัญหา / ข้อบกพร่อง NC</h1><hr>
+                    
                     <div class="card border-info mb-3" style="max-width: 80%;">
                         
                         <?php  
@@ -34,7 +35,7 @@ and open the template in the editor.
                             }
                         ?>
                         
-                        <div class="card-header">1. รายละเอียดปัญหา/ข้อบกพร่อง สำหรับผู้พบปัญหา &nbsp;&nbsp;<span><b>NC Status : </b><?php echo $nc_status; ?></span></div>
+                        <div class="card-header">1. รายละเอียดปัญหา/ข้อบกพร่อง สำหรับผู้พบปัญหา &nbsp;&nbsp;<span><b>NC Status : </b><?php echo $get_nc['nc_status']; ?></span></div>
                         
                         <div class="card-body text-info">
                             <h5 class="card-title">เรียน ผู้จัดการฝ่าย xxx</h5><br>
@@ -64,26 +65,37 @@ and open the template in the editor.
                                     <?php foreach ($get_rel_dept as $grd): ?>
                                         <span class="nc_color_font res_dept"><?php echo $grd->cp_dept_main_name; ?></span>
                                         <!--Check dept for permission-->
-                                        <?php if($getuser['Dept'] != $grd->cp_dept_main_name){
-                                            $checkPermis = 0 ;
-                                        }else{
-                                            $checkPermis = 1 ;
-                                        } 
-                                        ?>
                                     <?php endforeach; ?> 
-                                        <input type="text" name="checkPermission" id="checkPermission" value="<?php echo $checkPermis; ?>" />
+                                    
+                                        
+ 
                                 </span></p>
                             <p class="card-text"><span><strong>ลงชื่อฝ่ายบริหาร : </strong></span><span class="nc_color_font qmr"><?php echo $rs['cp_sum_inves_signature']; ?></span><span>&nbsp;<strong>วันที่</strong>&nbsp;</span><span class="nc_color_font"><?php echo $rs['cp_sum_inves_date']; ?></span></p>
-                            <p><input hidden="" type="text" name="dept" id="dept" value="<?php echo $getuser['Dept']; ?>" /></p><!--Check dept for permission-->
+
+                            
+                            <?php  
+                            $res = 0;
+                                                    foreach ($nc_check_dept->result_array() as $nc_c){
+                                                        $nc_c['cp_rt_dept_code'];
+                                                        if($nc_c['cp_rt_dept_code'] !== $getuser['DeptCode']){
+                                                            continue;
+                                                        }
+                                                       echo $res = 1;
+                                                    }
+                            ?>
+                            <p><input  type="text" name="dept_check" id="dept_check" value="<?php echo $res; ?>" /></p><!--Check dept for permission-->
+
                         </div>
                     </div>
 
 
+                    
+                    
                     <!-- ************************ Zone3 ***************************** -->                          
                     <form name="zone3" action="<?php echo base_url(); ?>nc/save_nc_zone3/<?php echo $rs['cp_no']; ?>" method="post" enctype="multipart/form-data"> 
 
                         <input type="text" name="nc_id" id="nc_id" hidden="" value="<?php echo $rs['cp_no']; ?>"/>
-                        <input hidden="" type="text" name="nc_status" id="nc_status" value="<?php echo $nc_status; ?>" />
+                        <input type="text" name="nc_status" id="nc_status" value="<?php echo $get_nc['nc_status']; ?>" />
 
 
                         <div class="card border-info mb-3 zone3" style="max-width: 80%;">
@@ -96,75 +108,61 @@ and open the template in the editor.
 
                                         <div class="col-md-6">
                                             <div class="row">
+                                                
                                                 <div class="col-md-12 card-text"><p class=""><span>3.1 สาเหตุ</span><br>
                                                         <?php if ($get_nc['nc_motive'] == "") { ?>
-                                                            <textarea rows='5' class="form-control" name='nc_motive' id="nc_motive"></textarea>
+                                                        <textarea rows='5' class="form-control" name='nc_motive' id="nc_motive" required=""></textarea>
                                                         <?php } else { ?>  
                                                             <textarea readonly="" rows='5' class="form-control" name='nc_motive' id="nc_motive"><?php echo $get_nc['nc_motive']; ?></textarea>
                                                         <?php } ?>
                                                     </p></div><br>
 
 
+                                                    
                                                 <div class="col-md-12 card-text"><p class=""><span>3.2 วิธีแก้ไข</span><br>
                                                         <?php if ($get_nc['nc_corrective'] == "") { ?>
-                                                            <textarea rows='5' class="form-control" name='nc_corrective' id="nc_corrective"></textarea>
-                                                    <div class="form-inline"><label class="form-group">กำหนดเสร็จ :</label>&nbsp;<input type="date" name="nc_corrective_date" id="nc_corrective_date" class="form-control form-group"/></div>
+                                                        <textarea rows='5' class="form-control" name='nc_corrective' id="nc_corrective" required=""></textarea>
+                                                    <div class="form-inline"><label class="form-group">กำหนดเสร็จ :</label>&nbsp;<input type="date" name="nc_corrective_date" id="nc_corrective_date" class="form-control form-group" required=""/></div>
                                                     <?php } else { ?>
                                                         <textarea readonly="" rows='5' class="form-control" name='nc_corrective' id="nc_corrective"><?php echo $get_nc['nc_corrective']; ?></textarea>
                                                         <div class="form-inline"><label class="form-group">กำหนดเสร็จ :</label>&nbsp;<input readonly="" value="<?php echo $get_nc['nc_corrective_date']; ?>" type="date" name="nc_corrective_date" id="nc_corrective_date" class="form-control form-group"/></div>
                                                     <?php } ?>
-
-
                                                     </p></div><br>
+                                                    
+                                                    
 
                                                 <div class="col-md-12 card-text"><p class="card-text"><span>3.3 วิธีป้องกัน</span><br>
-
                                                         <?php if ($get_nc['nc_preventive'] == "") { ?>
-                                                            <textarea rows='5' class="form-control" name='nc_preventive' id="nc_preventive"></textarea>
-                                                    <div class="form-inline"><label class="form-group">กำหนดเสร็จ :</label>&nbsp;<input type="date" name="nc_preventive_date" id="nc_preventive_date" class="form-control form-group" /></div>
+                                                        <textarea rows='5' class="form-control" name='nc_preventive' id="nc_preventive" required=""></textarea>
+                                                    <div class="form-inline"><label class="form-group">กำหนดเสร็จ :</label>&nbsp;<input type="date" name="nc_preventive_date" id="nc_preventive_date" class="form-control form-group" required=""/></div>
                                                     <?php } else { ?>
                                                         <textarea readonly="" rows='5' class="form-control" name='nc_preventive' id="nc_preventive"><?php echo $get_nc['nc_preventive']; ?></textarea>
                                                         <div class="form-inline"><label class="form-group">กำหนดเสร็จ :</label>&nbsp;<input readonly="" value="<?php echo $get_nc['nc_preventive_date']; ?>" type="date" name="nc_preventive_date" id="nc_preventive_date" class="form-control form-group" /></div>
                                                     <?php } ?>
-
-
-
                                                     </p></div>
+                                                    
+                                                    
 
                                                 <div class="col-md-12">
-                                                    <label>ผู้รับผิดชอบ : </label>&nbsp;<label class="nc_color_font"><?php echo $getuser['username']; ?></label>&nbsp;<label>วันที่ : &nbsp;</label><label class="nc_color_font"><?php echo date("d-m-Y") ?></label>
-                                                    <input type="text" name="nc_owner" id="nc_owner" hidden="" />
+                                                    <?php if ($get_nc['nc_preventive'] == "") { ?>
+                                                    <label>ผู้รับผิดชอบ : </label>&nbsp;<label class="nc_color_font"><?php echo $getuser['username']; ?></label>&nbsp;<label>รหัสพนักงาน : </label>&nbsp;<label class="nc_color_font"><?php echo $getuser['ecode']; ?></label>&nbsp;<br><label>แผนก : </label>&nbsp;<label class="nc_color_font"><?php echo $getuser['Dept']; ?></label>&nbsp;<label>วันที่ : &nbsp;</label><label class="nc_color_font"><?php echo date("d-m-Y") ?></label>
+                                                    <input hidden="" type="text" name="nc_zone3_owner" id="nc_zone3_owner" value="<?php echo $getuser['username']; ?>"/>
+                                                    <input hidden="" type="text" name="nc_zone3_owner_deptcode" id="nc_zone3_owner_deptcode" value="<?php echo $getuser['ecode']; ?>"/>
+                                                    <input hidden="" type="text" name="nc_zone3_owner_dept" id="nc_zone3_owner_dept" value="<?php echo $getuser['Dept']; ?>"/>
+                                                    <input hidden="" type="date" name="nc_zone3_owner_date" id="nc_zone3_owner_date" value="<?php echo date("d-m-Y"); ?>"/>
+                                                    
+                                                    <?php } else { ?>
+                                                    <label>ผู้รับผิดชอบ : </label>&nbsp;<label class="nc_color_font"><?php echo $get_nc['nc_zone3_owner']; ?></label>&nbsp;<label>รหัสพนักงาน : </label>&nbsp;<label class="nc_color_font"><?php echo $get_nc['nc_zone3_owner_deptcode']; ?></label>&nbsp;<br><label>แผนก : </label>&nbsp;<label class="nc_color_font"><?php echo $get_nc['nc_zone3_owner_dept']; ?></label>&nbsp;<label>วันที่ : &nbsp;</label><label class="nc_color_font"><?php echo $get_nc['nc_zone3_owner_date']; ?></label>
+                                                    <?php } ?>
                                                 </div>
                                                 <div class="col-md-12 btn3">
-                                                    <input type="submit" name="btn3" id="btn3" class="btn btn-primary"/>
+                                                    <input type="submit" name="btn3" id="btn3" class="btn btn-primary" onclick="javascript:return confirm('คุณต้องการบันทึกข้อมูล ใช่ หรือ ไม่');"/>
                                                 </div>
                                             </div>
-
                                         </div>
-                                        <!-- ************************ Zone3 ***************************** -->  
-
-                                        <!--          <div class="col-md-6">
-                                                      <div class="row">
-                                                          <div class="col-md-12 card-text"><p class=""><span>3.1 สาเหตุ</span><br>
-                                                          <textarea rows='5' class="form-control" name='cause_text' id="cause_text"></textarea>
-                                                      </p></div><br>
-                                                           
+                                        <!-- ************************ Zone3 ***************************** --> 
                                         
-                                              <div class="col-md-12 card-text"><p class=""><span>3.2 วิธีแก้ไข</span><br>
-                                                      <textarea rows='5' class="form-control" name='edit_text' id="edit_text"></textarea>
-                                                  <div class="form-inline"><label class="form-group">กำหนดเสร็จ :</label>&nbsp;<input type="date" name="end_date1" class="form-control form-group"/></div>
-                                                  </p></div><br>
-                                              
-                                              <div class="col-md-12 card-text"><p class=""><span>3.3 วิธีป้องกัน</span><br>
-                                                      <textarea rows='5' class="form-control" name='protect_text' id="protect_text"></textarea>
-                                                  <div class="form-inline"><label class="form-group">กำหนดเสร็จ :</label>&nbsp;<input type="date" name="end_date2" class="form-control form-group" /></div>
-                                              </p></div>
-                                                  
-                                                  <div class="col-md-12">
-                                                      <label>ผู้รับผิดชอบ : </label>&nbsp;<label><?php echo date("d-m-Y") ?></label>
-                                                  </div>
-                                                      </div>
-                                                  </div>-->
+                                        
                                     </div>
 
 
@@ -191,7 +189,7 @@ and open the template in the editor.
                                         <p><label>เอกสารประกอบ :</label><input name="file_follow1" id="file_follow1" type="file" class="form-control form-control-sm"/></p>
                                         <p><label>ปิดสรุป : </label><input type="radio" name="followup1_radio" id="followup1_radio" value="0"/>&nbsp;&nbsp;<label>ไม่ปิดสรุป : </label><input type="radio" name="followup1_radio" id="followup1_radio" value="1"/></p>
                                         <div class="form-inline"><label class="form-group">กำหนดติดตามผลครั้งที่ 2 :</label>&nbsp;<input type="date" name="followup1_date" id="followup1_date" class="form-group form-control" /></div>
-                                        <p><input type="submit" name="btn-follow1" id="btn-follow1" class="btn btn-primary"/></p>
+                                        <p><input type="submit" name="btn-follow1" id="btn-follow1" class="btn btn-primary" onclick="javascript:return confirm('คุณต้องการบันทึกข้อมูล ใช่ หรือ ไม่');"/></p>
 
                                     <?php } else { ?>
 
@@ -336,7 +334,7 @@ and open the template in the editor.
                                 
                                 <input hidden="" type="text" name="nc_conclusion_user" id="nc_conclusion_user" value="<?php echo $getuser['username']; ?>" />
                                 <input <?php echo $read3; ?> type="text" name="nc_conclusion_date" id="nc_conclusion_date" hidden="" value="<?php echo date("d-m-Y"); ?>"/>
-                                <p><input <?php echo $hidden3; ?> type="submit" name="btn-con-nc" id="btn-con-nc" class="btn btn-primary"/></p>
+                                <p><input <?php echo $hidden3; ?> type="submit" name="btn-con-nc" id="btn-con-nc" class="btn btn-primary" onclick="javascript:return confirm('คุณต้องการบันทึกข้อมูล ใช่ หรือ ไม่');"/></p>
                                 <?php }else{ ?>
                                 <p class="card-text"><textarea readonly="" class="form-control" rows='5' name='nc_conclusion' id="nc_conclusion"><?php echo $get_nc['nc_conclusion']; ?></textarea></p>
                                 <div class="form-inline"><label>ลงชื่อ :</label><label class="nc_color_font"><?php echo $get_nc['nc_conclusion_user']; ?></label>&nbsp;<label class="form-group">วันที่ :</label>&nbsp;<label class="nc_color_font"><?php echo $get_nc['nc_conclusion_date']; ?></label></div><br>
